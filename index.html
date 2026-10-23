@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<title>KUMA Universe 線上電影劇場</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="《兔兔與熊大的日本荒謬旅行》照片式電影播放網站">
+<meta name="theme-color" content="#24150f">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="KUMA 劇場">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="assets/images/icon.png">
+<link rel="apple-touch-icon" href="assets/images/icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=LXGW+WenKai+TC:wght@400;700&family=Noto+Sans+TC:wght@400;500;700&display=swap">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<!-- ===== 首頁 ===== -->
+<main id="home" class="home">
+  <header class="marquee">
+    <div class="marquee-inner">
+      <p class="brand"><span class="brand-dot" aria-hidden="true"></span>KUMA Universe 線上電影劇場</p>
+      <div class="hero">
+        <figure class="poster">
+          <div class="poster-frame">
+            <img id="posterImg" alt="兔兔與熊大並肩走在街上的原始照片" width="848" height="1248">
+          </div>
+          <figcaption id="appearanceNote"></figcaption>
+        </figure>
+        <div class="hero-copy">
+          <p class="now-showing">本日放映</p>
+          <h1 id="filmTitle" class="film-title"></h1>
+          <p id="filmSubtitle" class="film-subtitle"></p>
+          <p id="filmTagline" class="film-tagline"></p>
+          <p id="filmBlurb" class="film-blurb"></p>
+          <dl class="ticket" aria-label="片長資訊">
+            <div><dt>預計片長</dt><dd id="runtime">—</dd></div>
+            <div><dt>段落</dt><dd id="chapterCount">—</dd></div>
+            <div><dt>幕數</dt><dd id="sceneCount">—</dd></div>
+          </dl>
+          <div class="hero-actions">
+            <button id="playBtn" class="btn btn-primary" type="button">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+              開始播放
+            </button>
+            <button id="resumeBtn" class="btn btn-ghost" type="button" hidden>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5V2L7 6l5 4V7a6 6 0 1 1-6 6H4a8 8 0 1 0 8-8z"/></svg>
+              <span>繼續觀看</span>
+            </button>
+          </div>
+          <p id="resumeInfo" class="resume-info" hidden></p>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <section class="programme" aria-labelledby="programmeTitle">
+    <div class="section-inner">
+      <h2 id="programmeTitle" class="section-title">章節選擇</h2>
+      <p class="section-note">點選任一段落，從該章開始觀看。</p>
+      <ol id="chapterGrid" class="chapter-grid"></ol>
+    </div>
+  </section>
+
+  <section class="notes" aria-labelledby="notesTitle">
+    <div class="section-inner notes-grid">
+      <div>
+        <h2 id="notesTitle" class="section-title">放映說明</h2>
+        <ul class="plain-list">
+          <li>這是照片式電影：以 PDF 原始照片、劇情字幕與轉場模擬播放，沒有影片檔。</li>
+          <li>每張六格組合圖已切成六幕，依第一列左至右、第二列左至右的順序播放。</li>
+          <li>觀看進度會自動記在這台裝置的瀏覽器裡。</li>
+          <li>鍵盤：空白鍵播放／暫停，左右方向鍵切換上一幕／下一幕，F 全螢幕。</li>
+        </ul>
+      </div>
+      <div>
+        <h2 class="section-title">聲音狀態</h2>
+        <ul id="audioStatusHome" class="plain-list"></ul>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="section-inner">
+      <p>原作：《兔兔與熊大的日本荒謬旅行》PDF。劇情文字只取自原作，未新增或改寫情節；序章另依作者指示加入兩組 PDF 以外的出發篇照片，畫面上標示為「補充照片」。</p>
+    </div>
+  </footer>
+</main>
+
+<!-- ===== 播放器 ===== -->
+<section id="player" class="player" hidden aria-label="電影播放器">
+  <div class="player-top">
+    <button id="backHomeBtn" class="icon-btn" type="button" aria-label="回首頁" title="回首頁">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15.4 7.4 14 6l-6 6 6 6 1.4-1.4L10.8 12z"/></svg>
+    </button>
+    <div class="now-playing">
+      <span id="npChapter" class="np-chapter"></span>
+      <span id="npTitle" class="np-title"></span>
+    </div>
+    <button id="chaptersBtn" class="pill-btn" type="button" aria-haspopup="dialog" aria-controls="chapterDrawer">章節</button>
+    <button id="settingsBtn" class="icon-btn" type="button" aria-haspopup="dialog" aria-controls="settingsDrawer" aria-label="播放設定" title="播放設定">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19.4 13a7.5 7.5 0 0 0 0-2l2.1-1.6-2-3.4-2.5 1a7.6 7.6 0 0 0-1.7-1L15 3.3h-4l-.4 2.7a7.6 7.6 0 0 0-1.7 1l-2.5-1-2 3.4L6.6 11a7.5 7.5 0 0 0 0 2l-2.1 1.6 2 3.4 2.5-1a7.6 7.6 0 0 0 1.7 1l.4 2.7h4l.4-2.7a7.6 7.6 0 0 0 1.7-1l2.5 1 2-3.4zM13 15.5a3.5 3.5 0 1 1 0-7 3.5 3.5 0 0 1 0 7z" transform="translate(-1 0)"/></svg>
+    </button>
+  </div>
+
+  <div id="stage" class="stage" tabindex="-1">
+    <div class="screen" id="screen">
+      <div class="backdrop" id="backdrop" aria-hidden="true"></div>
+      <div class="frame-layer" id="layerA"></div>
+      <div class="frame-layer" id="layerB"></div>
+      <div id="tapHint" class="tap-hint" hidden></div>
+    </div>
+    <div class="subtitle-panel" id="subtitlePanel" aria-live="polite"></div>
+  </div>
+
+  <div class="controls" id="controls">
+    <div class="timeline-row">
+      <span id="timeNow" class="time">0:00</span>
+      <div id="timeline" class="timeline" role="slider" tabindex="0" aria-label="播放進度" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+        <div class="timeline-track">
+          <div id="timelineFill" class="timeline-fill"></div>
+          <div id="timelineMarks" class="timeline-marks"></div>
+          <div id="timelineKnob" class="timeline-knob"></div>
+        </div>
+      </div>
+      <span id="timeTotal" class="time">0:00</span>
+    </div>
+    <div class="button-row">
+      <span id="sceneCounter" class="scene-counter">第 1 幕</span>
+      <div class="transport">
+        <button id="prevBtn" class="icon-btn" type="button" aria-label="上一幕" title="上一幕（←）">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6h2v12H6zm3.5 6 8.5 6V6z"/></svg>
+        </button>
+        <button id="toggleBtn" class="icon-btn big" type="button" aria-label="播放" title="播放／暫停（空白鍵）">
+          <svg class="i-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+          <svg class="i-pause" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 19h4V5H6zm8-14v14h4V5z"/></svg>
+        </button>
+        <button id="nextBtn" class="icon-btn" type="button" aria-label="下一幕" title="下一幕（→）">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 18l8.5-6L6 6zM16 6v12h2V6z"/></svg>
+        </button>
+      </div>
+      <button id="fullscreenBtn" class="icon-btn" type="button" aria-label="全螢幕" title="全螢幕（F）">
+        <svg class="i-enter" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 14H5v5h5v-2H7zm-2-4h2V7h3V5H5zm12 7h-3v2h5v-5h-2zM14 5v2h3v3h2V5z"/></svg>
+        <svg class="i-exit" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 16h3v3h2v-5H5zm3-8H5v2h5V5H8zm6 11h2v-3h3v-2h-5zm2-11V5h-2v5h5V8z"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- 章節選單 -->
+  <div id="chapterDrawer" class="drawer" role="dialog" aria-modal="true" aria-labelledby="chapterDrawerTitle" hidden>
+    <div class="drawer-card">
+      <div class="drawer-head">
+        <h2 id="chapterDrawerTitle">章節選單</h2>
+        <button class="icon-btn" type="button" data-close aria-label="關閉">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 6.4 17.6 5 12 10.6 6.4 5 5 6.4 10.6 12 5 17.6 6.4 19 12 13.4 17.6 19 19 17.6 13.4 12z"/></svg>
+        </button>
+      </div>
+      <ol id="chapterList" class="drawer-list"></ol>
+    </div>
+  </div>
+
+  <!-- 播放設定 -->
+  <div id="settingsDrawer" class="drawer" role="dialog" aria-modal="true" aria-labelledby="settingsTitle" hidden>
+    <div class="drawer-card">
+      <div class="drawer-head">
+        <h2 id="settingsTitle">播放設定</h2>
+        <button class="icon-btn" type="button" data-close aria-label="關閉">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 6.4 17.6 5 12 10.6 6.4 5 5 6.4 10.6 12 5 17.6 6.4 19 12 13.4 17.6 19 19 17.6 13.4 12z"/></svg>
+        </button>
+      </div>
+      <div class="setting">
+        <label for="durationRange">每幕停留時間：<strong id="durationValue">6 秒</strong></label>
+        <input id="durationRange" type="range" min="3" max="15" step="1" value="6">
+        <p class="hint">台詞較長的幕會依字數自動多停留幾秒，方便讀完。</p>
+      </div>
+      <div class="setting">
+        <label class="switch"><input id="autoAdvance" type="checkbox" checked> 自動依序播放下一幕</label>
+      </div>
+      <div class="setting">
+        <label for="textSize">字幕大小</label>
+        <select id="textSize">
+          <option value="s">小</option>
+          <option value="m" selected>中</option>
+          <option value="l">大</option>
+        </select>
+      </div>
+      <div class="setting">
+        <h3>聲音</h3>
+        <button id="soundBtn" class="btn btn-ghost small" type="button">點擊啟用聲音</button>
+        <ul id="audioStatus" class="audio-status"></ul>
+        <p class="hint">瀏覽器不允許網頁自動發出聲音，所以需要你先點一下按鈕。目前沒有任何音檔，啟用後也不會有聲音。</p>
+      </div>
+      <div class="setting">
+        <button id="resetProgressBtn" class="btn btn-ghost small" type="button">清除觀看進度</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 片尾 -->
+  <div id="endScreen" class="end-screen" hidden>
+    <div class="end-card">
+      <p class="end-eyebrow">THE END</p>
+      <h2 id="endTitle" class="end-title"></h2>
+      <dl class="credits">
+        <div><dt>主演</dt><dd>熊大（AI agent 執行熊）・兔兔（旅行主人）</dd></div>
+        <div><dt>原作</dt><dd id="endSource"></dd></div>
+        <div><dt>畫面</dt><dd>PDF 原始照片，六格組合圖逐格切割；序章含作者提供的補充照片</dd></div>
+        <div><dt>聲音</dt><dd>尚未製作（無旁白、配音、配樂與音效）</dd></div>
+      </dl>
+      <div class="end-actions">
+        <button id="replayBtn" class="btn btn-primary" type="button">重新播放</button>
+        <button id="endChaptersBtn" class="btn btn-ghost" type="button">選擇章節</button>
+        <button id="endHomeBtn" class="btn btn-ghost" type="button">回首頁</button>
+      </div>
+      <details class="roadmap">
+        <summary>後續擴充項目</summary>
+        <ul id="roadmapList"></ul>
+      </details>
+    </div>
+  </div>
+
+  <div id="toast" class="toast" role="status" hidden></div>
+</section>
+
+<noscript><p class="noscript">這個網站需要開啟 JavaScript 才能播放。</p></noscript>
+
+<script src="js/story-data.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,11 @@
+{
+  "name": "KUMA Universe 線上電影劇場",
+  "short_name": "KUMA 劇場",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#24150f",
+  "theme_color": "#24150f",
+  "icons": [{ "src": "assets/images/icon.png", "sizes": "512x512", "type": "image/png" }]
+}
