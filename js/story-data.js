@@ -14,6 +14,7 @@
 
   var IMG = "assets/images/";
   var SCENE = IMG + "scenes/";
+  var AUDIO = "assets/audio/";
 
   // 每一幕預留的音訊欄位：填入 assets/audio/ 底下實際存在的檔案路徑後，播放器才會播放。
   function noAudio() {
@@ -66,8 +67,42 @@
     appearanceNote: "角色外觀依照使用者提供的兔兔與熊大參考照片保持一致",
     poster: IMG + "characters-rabbit-and-bear.jpg",
     endCredit: "完｜兔兔與熊大的日本荒謬旅行故事集",
-    // 背景音樂：目前沒有音檔。放入檔案後填寫路徑，例如 "assets/audio/bgm/theme.mp3"。
-    bgm: null,
+    // 音訊素材庫：全部由 tools/make_audio.py 以程式合成，原創、CC0，沒有使用外部錄音或歌曲。
+    audio: {
+      music: {
+        "theme-warm":    { src: AUDIO + "music/theme-warm.mp3", loopLength: 91.428571,    title: "溫馨主題（開場、片尾）" },
+        "travel-japan":  { src: AUDIO + "music/travel-japan.mp3", loopLength: 68.571429,  title: "日本旅行出發（五聲音階、琴與輕打擊）" },
+        "comedy-bounce": { src: AUDIO + "music/comedy-bounce.mp3", loopLength: 58.181814, title: "搞笑碰恰（豎笛斷奏、木魚）" },
+        "zen-garden":    { src: AUDIO + "music/zen-garden.mp3", loopLength: 87.272721,    title: "古都庭園（箏、尺八、風鈴）" },
+        "tender-home":   { src: AUDIO + "music/tender-home.mp3", loopLength: 75.789456,   title: "溫柔回家（鋼琴、八音盒）" }
+      },
+      sfx: {
+        "whoosh":        { src: AUDIO + "sfx/whoosh.mp3",        title: "章節轉場風聲" },
+        "confirm":       { src: AUDIO + "sfx/confirm.mp3",       title: "熊大「收到，立即執行」提示音" },
+        "sparkle":       { src: AUDIO + "sfx/sparkle.mp3",       title: "閃亮音" },
+        "boing":         { src: AUDIO + "sfx/boing.mp3",         title: "彈簧搞笑音" },
+        "womp":          { src: AUDIO + "sfx/womp.mp3",          title: "失落長號" },
+        "stamp":         { src: AUDIO + "sfx/stamp.mp3",         title: "蓋章重音" },
+        "snore":         { src: AUDIO + "sfx/snore.mp3",         title: "打呼" },
+        "megaphone":     { src: AUDIO + "sfx/megaphone.mp3",     title: "擴音器嗶聲" },
+        "footsteps":     { src: AUDIO + "sfx/footsteps.mp3",     title: "腳步聲" },
+        "forest":        { src: AUDIO + "sfx/forest.mp3",        title: "公園、竹林的風聲與鳥鳴" },
+        "city-crowd":    { src: AUDIO + "sfx/city-crowd.mp3",    title: "澀谷人群環境聲" },
+        "crowd-ooh":     { src: AUDIO + "sfx/crowd-ooh.mp3",     title: "路人驚訝聲" },
+        "rain":          { src: AUDIO + "sfx/rain.mp3",          title: "雨聲" },
+        "tape-measure":  { src: AUDIO + "sfx/tape-measure.mp3",  title: "捲尺" },
+        "tada":          { src: AUDIO + "sfx/tada.mp3",          title: "完成號角" },
+        "buzzer":        { src: AUDIO + "sfx/buzzer.mp3",        title: "超標警示音" },
+        "airport-chime": { src: AUDIO + "sfx/airport-chime.mp3", title: "機場廣播提示音" },
+        "car-horn":      { src: AUDIO + "sfx/car-horn.mp3",      title: "汽車喇叭" },
+        "train":         { src: AUDIO + "sfx/train.mp3",         title: "新幹線呼嘯" },
+        "box-thud":      { src: AUDIO + "sfx/box-thud.mp3",      title: "紙箱落地" },
+        "truck":         { src: AUDIO + "sfx/truck.mp3",         title: "貨車引擎" },
+        "comic-sting":   { src: AUDIO + "sfx/comic-sting.mp3",   title: "被發現了的驚嚇音" },
+        "camera":        { src: AUDIO + "sfx/camera.mp3",        title: "相機快門" }
+      },
+      endMusic: "theme-warm"
+    },
 
     chapters: [
       {
@@ -358,11 +393,39 @@
     // 後續擴充項目：目前沒有做、也沒有假裝做好的東西。
     roadmap: [
       "旁白錄音、兔兔與熊大的角色配音（目前沒有音檔）",
-      "背景音樂與音效（目前沒有音檔）",
+      "以真人演奏或專業音效庫取代目前程式合成的音樂與音效（可選）",
       "結語頁的電影畫面（PDF 原稿沒有照片）",
       "各章節標題橫幅的獨立版本（原圖橫幅跨越三格，目前以文字顯示章節名稱）"
     ]
   };
+
+  // 配樂與音效安排：music 是整章的背景音樂，scenes 以「本章第幾幕（從 0 起算）」指定音效或換曲。
+  // 不是每一幕都有音效，只放在畫面或台詞適合的地方。
+  var CUES = {
+    opening:  { music: "theme-warm",    scenes: { 0: "sparkle" } },
+    prologue: { music: "travel-japan",  scenes: { 0: "whoosh", 3: "car-horn", 5: "confirm", 6: "tada", 7: "airport-chime",
+                                                  9: "car-horn", 11: "confirm", 13: "airport-chime", 15: "confirm" } },
+    ch1:      { music: "zen-garden",    scenes: { 0: "whoosh", 1: "forest", 3: "confirm", 4: "boing", 6: "camera", 7: "womp" } },
+    ch2:      { music: "comedy-bounce", scenes: { 0: "whoosh", 2: "footsteps", 3: "confirm", 5: "snore", 6: "megaphone", 7: "stamp", 8: "womp" } },
+    ch3:      { music: "zen-garden",    scenes: { 0: "whoosh", 1: "forest", 3: "confirm", 4: "tape-measure", 6: "crowd-ooh", 7: "rain" } },
+    ch4:      { music: "comedy-bounce", scenes: { 0: "whoosh", 1: "city-crowd", 2: "camera", 3: "confirm", 4: "megaphone", 6: "footsteps", 7: "tada" } },
+    ch5:      { music: "travel-japan",  scenes: { 0: "whoosh", 2: "confirm", 3: "sparkle", 4: "train", 7: "comic-sting" },
+                // 兔兔要求「悠閒、浪漫、慢慢逛」的第 4、5 幕換成溫柔的音樂
+                musicOverride: { 5: "tender-home", 6: "tender-home" } },
+    ch6:      { music: "comedy-bounce", scenes: { 0: "whoosh", 2: "sparkle", 3: "confirm", 4: "tape-measure", 5: "tada", 6: "buzzer", 7: "airport-chime" } },
+    extra:    { music: "tender-home",   scenes: { 0: "whoosh", 2: "confirm", 3: "box-thud", 4: "truck", 5: "comic-sting", 6: "tada", 7: "womp" } },
+    epilogue: { music: "tender-home",   scenes: { 0: "whoosh", 3: "confirm" } }
+  };
+  episode.chapters.forEach(function (ch) {
+    var cue = CUES[ch.id];
+    if (!cue) return;
+    ch.music = cue.music;
+    ch.scenes.forEach(function (sc, i) {
+      sc.audio = sc.audio || noAudio();
+      if (cue.scenes[i]) sc.audio.sfx = cue.scenes[i];
+      if (cue.musicOverride && cue.musicOverride[i]) sc.music = cue.musicOverride[i];
+    });
+  });
 
   window.KUMA_LIBRARY = {
     brand: "KUMA Universe 線上電影劇場",

@@ -168,68 +168,86 @@
     }
   }
 
-  // ---------- 聲音（預留介面） ----------
-  var audio = {
-    enabled: false,
-    bgmEl: null,
-    fxEl: null,
-    tracks: function () {
-      var count = { narration: 0, voice: 0, sfx: 0 };
-      timeline.forEach(function (e) {
-        var a = e.scene.audio || {};
-        if (a.narration) count.narration++;
-        if (a.voice) count.voice++;
-        if (a.sfx) count.sfx++;
-      });
-      return [
-        { name: "旁白", n: count.narration },
-        { name: "角色配音", n: count.voice },
-        { name: "背景音樂", n: film.bgm ? 1 : 0 },
-        { name: "音效", n: count.sfx }
-      ];
-    },
-    enable: function () {
-      this.enabled = true;
-      if (film.bgm && !this.bgmEl) {
-        this.bgmEl = new Audio(film.bgm);
-        this.bgmEl.loop = true;
-        this.bgmEl.volume = 0.4;
-      }
-      if (this.bgmEl && player.playing) this.bgmEl.play().catch(function () {});
-    },
-    onScene: function (scene) {
-      if (!this.enabled) return;
-      var a = scene.audio || {};
-      var src = a.voice || a.narration || null;
-      if (this.fxEl) { this.fxEl.pause(); this.fxEl = null; }
-      if (src) {
-        this.fxEl = new Audio(src);
-        this.fxEl.play().catch(function () {});
-      }
-    },
-    pause: function () {
-      if (this.bgmEl) this.bgmEl.pause();
-      if (this.fxEl) this.fxEl.pause();
-    },
-    resume: function () {
-      if (!this.enabled) return;
-      if (this.bgmEl) this.bgmEl.play().catch(function () {});
-      if (this.fxEl) this.fxEl.play().catch(function () {});
-    }
+  // ---------- 聲音 ----------
+  // 音訊設定與引擎（js/audio-engine.js）。音檔清單在 story-data.js 的 film.audio。
+  var audioSettings = {
+    masterOn: stored.masterOn !== false,
+    volume: typeof stored.volume === "number" ? stored.volume : 0.85,
+    musicOn: stored.musicOn !== false,
+    musicVolume: typeof stored.musicVolume === "number" ? stored.musicVolume : 0.55,
+    sfxOn: stored.sfxOn !== false,
+    sfxVolume: typeof stored.sfxVolume === "number" ? stored.sfxVolume : 0.7
   };
+  var sound = new window.KumaAudio(film.audio, audioSettings);
+
+  function musicFor(entry) {
+    return entry.scene.music || entry.chapter.music || null;
+  }
+  function sfxFor(entry) {
+    return (entry.scene.audio && entry.scene.audio.sfx) || null;
+  }
+  function voiceCount() {
+    var n = 0;
+    timeline.forEach(function (e) { var a = e.scene.audio || {}; if (a.narration || a.voice) n++; });
+    return n;
+  }
+  function audioRows() {
+    var sm = sound.summary();
+    function state(c) {
+      if (c.error) return { text: c.error + " 個無法播放", ok: false };
+      if (c.pending === c.total) return { text: "已設定 " + c.total + " 個", ok: true };
+      if (c.pending) return { text: c.ok + " / " + c.total + " 個已載入", ok: true };
+      return { text: c.ok + " / " + c.total + " 個可播放", ok: true };
+    }
+    var v = voiceCount();
+    return [
+      { name: "背景音樂", s: state(sm.music) },
+      { name: "場景音效", s: state(sm.sfx) },
+      { name: "旁白與角色配音", s: v ? { text: v + " 個", ok: true } : { text: "尚未製作，沒有音檔", ok: false } }
+    ];
+  }
   function renderAudioStatus(ul, plain) {
+    if (!ul) return;
     ul.innerHTML = "";
-    audio.tracks().forEach(function (t) {
+    audioRows().forEach(function (r) {
       var li = el("li");
       if (plain) {
-        li.textContent = t.name + "：" + (t.n ? "已設定 " + t.n + " 個音檔" : "尚未製作，沒有音檔");
-        if (!t.n) li.className = "missing";
+        li.textContent = r.name + "：" + r.s.text;
+        if (!r.s.ok) li.className = "missing";
       } else {
-        li.appendChild(el("span", null, t.name));
-        li.appendChild(el("span", "state" + (t.n ? " ok" : ""), t.n ? "已設定 " + t.n + " 個" : "尚無音檔"));
+        li.appendChild(el("span", null, r.name));
+        li.appendChild(el("span", "state" + (r.s.ok ? " ok" : ""), r.s.text));
       }
       ul.appendChild(li);
     });
+  }
+  function renderNowMusic() {
+    var n = $("nowMusic");
+    if (!n) return;
+    var t = sound.currentMusicTitle();
+    n.textContent = !sound.unlocked() ? "按下播放後才會開始播放聲音"
+      : !audioSettings.masterOn ? "聲音已關閉"
+      : t ? "背景音樂：" + t : "目前沒有背景音樂";
+    var mute = $("muteBtn");
+    if (mute) {
+      mute.classList.toggle("is-muted", !audioSettings.masterOn);
+      mute.setAttribute("aria-label", audioSettings.masterOn ? "關閉聲音" : "開啟聲音");
+      mute.setAttribute("aria-pressed", audioSettings.masterOn ? "false" : "true");
+    }
+  }
+  sound.onChange(function () {
+    renderAudioStatus($("audioStatus"), false);
+    renderAudioStatus($("audioStatusHome"), true);
+    renderNowMusic();
+  });
+  function saveAudio() {
+    save({
+      masterOn: audioSettings.masterOn, volume: audioSettings.volume,
+      musicOn: audioSettings.musicOn, musicVolume: audioSettings.musicVolume,
+      sfxOn: audioSettings.sfxOn, sfxVolume: audioSettings.sfxVolume
+    });
+    sound.applySettings();
+    renderNowMusic();
   }
 
   // ---------- 播放器 ----------
@@ -261,6 +279,7 @@
 
   function closePlayer() {
     pause();
+    sound.stopAll();
     persist();
     exitFullscreen();
     playerEl.hidden = true;
@@ -278,7 +297,8 @@
     renderScene(entry, instant);
     preload(index + 1);
     updateChrome();
-    audio.onScene(entry.scene);
+    sound.enterScene(musicFor(entry), sfxFor(entry), player.elapsed);
+    if (index + 1 < timeline.length) sound.preload(musicFor(timeline[index + 1]), sfxFor(timeline[index + 1]));
     persist();
   }
 
@@ -485,7 +505,12 @@
     player.timer = setInterval(tick, 100);
     playerEl.classList.add("is-playing");
     $("toggleBtn").setAttribute("aria-label", "暫停");
-    audio.resume();
+    // play() 都是由點擊或按鍵觸發，在這裡解鎖聲音才符合 iPhone／iPad Safari 的規定
+    if (sound.unlock()) {
+      if (!sound.music) sound.setMusic(musicFor(timeline[player.index]));
+      sound.play();
+      renderNowMusic();
+    }
     requestWakeLock();
     armIdle();
   }
@@ -495,7 +520,7 @@
     clearInterval(player.timer);
     playerEl.classList.remove("is-playing", "idle");
     $("toggleBtn").setAttribute("aria-label", "播放");
-    audio.pause();
+    sound.pause();
     releaseWakeLock();
     persist();
   }
@@ -514,6 +539,9 @@
 
   function finish() {
     pause();
+    // 片尾畫面：換成主題曲並繼續播放音樂（不放音效）
+    sound.enterScene(film.audio && film.audio.endMusic, null, 0);
+    if (sound.unlocked()) { sound.play(); renderNowMusic(); }
     save({ progress: { index: 0, elapsed: 0, finished: true, at: Date.now() } });
     $("endTitle").textContent = film.endCredit;
     $("endSource").textContent = "《" + film.title + "》PDF（共 11 頁）";
@@ -766,12 +794,61 @@
     playerEl.dataset.text = settings.text;
     save({ text: settings.text });
   });
-  $("soundBtn").addEventListener("click", function () {
-    audio.enable();
-    var hasAny = audio.tracks().some(function (t) { return t.n > 0; });
-    this.textContent = "聲音已啟用";
-    this.disabled = true;
-    toast(hasAny ? "聲音已啟用。" : "聲音已啟用，但目前沒有任何音檔，所以不會有聲音。");
+  // 聲音設定
+  function bindToggle(id, key) {
+    var c = $(id);
+    c.checked = audioSettings[key];
+    c.addEventListener("change", function () {
+      audioSettings[key] = c.checked;
+      saveAudio();
+      syncAudioControls();
+    });
+  }
+  function bindRange(id, key, outId) {
+    var r = $(id);
+    r.value = Math.round(audioSettings[key] * 100);
+    $(outId).textContent = r.value + "%";
+    r.addEventListener("input", function () {
+      audioSettings[key] = r.value / 100;
+      $(outId).textContent = r.value + "%";
+      saveAudio();
+    });
+  }
+  function syncAudioControls() {
+    $("volumeRange").disabled = !audioSettings.masterOn;
+    $("musicOn").disabled = $("sfxOn").disabled = !audioSettings.masterOn;
+    $("musicVolume").disabled = !audioSettings.masterOn || !audioSettings.musicOn;
+    $("sfxVolume").disabled = !audioSettings.masterOn || !audioSettings.sfxOn;
+  }
+  bindToggle("audioMaster", "masterOn");
+  bindToggle("musicOn", "musicOn");
+  bindToggle("sfxOn", "sfxOn");
+  bindRange("volumeRange", "volume", "volumeValue");
+  bindRange("musicVolume", "musicVolume", "musicVolumeValue");
+  bindRange("sfxVolume", "sfxVolume", "sfxVolumeValue");
+  syncAudioControls();
+  $("muteBtn").addEventListener("click", function () {
+    audioSettings.masterOn = !audioSettings.masterOn;
+    $("audioMaster").checked = audioSettings.masterOn;
+    if (audioSettings.masterOn && sound.unlock()) {
+      if (player.playing) { if (!sound.music) sound.setMusic(musicFor(timeline[player.index])); sound.play(); }
+    }
+    saveAudio();
+    syncAudioControls();
+    toast(audioSettings.masterOn ? "聲音已開啟。" : "聲音已關閉。");
+  });
+  $("verifyAudioBtn").addEventListener("click", function () {
+    var btn = this;
+    btn.disabled = true;
+    btn.textContent = "檢查中…";
+    sound.unlock();
+    sound.verifyAll().then(function (rows) {
+      var bad = rows.filter(function (r) { return !r.ok; });
+      btn.disabled = false;
+      btn.textContent = "重新檢查音檔";
+      toast(bad.length ? bad.length + " 個音檔無法播放：" + bad.map(function (r) { return r.src; }).join("、")
+                       : "全部 " + rows.length + " 個音檔都已下載並成功解碼。");
+    });
   });
   $("resetProgressBtn").addEventListener("click", function () {
     save({ progress: null });
@@ -782,6 +859,7 @@
   renderHome();
   renderMarks();
   renderAudioStatus($("audioStatus"), false);
+  renderNowMusic();
 
   // 網址 #play 直接進入播放器（不自動播放，避免瀏覽器擋自動播放）
   var hash = location.hash.replace("#", "");
@@ -796,6 +874,23 @@
   // 測試用的唯讀介面
   window.KUMA_PLAYER = {
     state: function () { return { index: player.index, elapsed: player.elapsed, playing: player.playing, total: total, scenes: timeline.length }; },
+    audio: function () {
+      return {
+        unlocked: sound.unlocked(),
+        ctxState: sound.ctx ? sound.ctx.state : null,
+        music: sound.music ? sound.music.id : null,
+        musicStarted: !!(sound.music && sound.music.source),
+        sfxPlaying: sound.sfxNodes.map(function (n) { return n.id; }),
+        lastSfx: sound.lastSfx || null,
+        firedToken: sound.firedToken,
+        sceneToken: sound.sceneToken,
+        master: sound.master ? sound.master.gain.value : null,
+        musicBus: sound.musicBus ? sound.musicBus.gain.value : null,
+        sfxBus: sound.sfxBus ? sound.sfxBus.gain.value : null,
+        summary: sound.summary()
+      };
+    },
+    sound: sound,
     chapterStart: chapterStart
   };
 })();
