@@ -67,3 +67,15 @@
 | 結語 旅行還沒有結束 | tender-home | 章名：章節轉場風聲（whoosh）<br>結尾台詞：熊大「收到，立即執行」提示音（confirm） |
 | 片尾畫面 | theme-warm | 無 |
 
+
+## 角色配音與旁白（試播）
+
+| 檔案 | 內容 | 來源與授權 |
+| --- | --- | --- |
+| `assets/audio/voice/ep01_ch1_s03_cony_1.mp3` | 兔兔「熊大，我今天有一個很簡單的要求。」 | Kokoro-82M（Apache-2.0）本機生成，CC0 |
+| `assets/audio/voice/ep01_ch1_s04_cony_1.mp3` | 兔兔「我要所有鹿看到我都要鞠躬！」 | 同上 |
+| `assets/audio/voice/ep01_ch1_s04_brown_2.mp3` | 熊大「收到，立即執行。」 | 同上 |
+| `assets/audio/voice/ep01_ch1_s05_brown_1.mp3` | 熊大「鹿一號，請完成九十度鞠躬。」 | 同上 |
+| `assets/audio/narration/ep01_ch1_s05_narrator_2.mp3` | 旁白「鞠躬 90 度！」 | 同上 |
+
+腳本、時間與聲線設定見 `docs/voice-script.md`。

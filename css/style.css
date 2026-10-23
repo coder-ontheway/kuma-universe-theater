@@ -325,6 +325,15 @@ body.player-open { overflow: hidden; }
 .who-畫面文字 { background: transparent; color: var(--cream-dim); box-shadow: inset 0 0 0 1px var(--velvet-3); font-weight: 500; }
 .say { font-size: var(--sub-size, 1.2rem); line-height: 1.6; font-weight: 500; }
 .line.minor .say { font-size: calc(var(--sub-size, 1.2rem) * .78); color: var(--cream-dim); }
+/* 正在念的台詞 */
+.line .say { transition: color .25s ease; }
+.line.speaking .say { color: var(--crown); }
+.line.speaking .who { box-shadow: 0 0 0 2px var(--crown); }
+.voice-hint {
+  position: absolute; left: 50%; bottom: 14px; transform: translateX(-50%);
+  padding: .35em .9em; border-radius: 999px; font-size: .8rem;
+  background: rgba(23, 13, 9, .78); color: var(--cream); pointer-events: none;
+}
 .player[data-text="s"] { --sub-size: 1.02rem; }
 .player[data-text="m"] { --sub-size: 1.2rem; }
 .player[data-text="l"] { --sub-size: 1.45rem; }

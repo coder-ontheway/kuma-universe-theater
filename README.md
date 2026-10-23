@@ -11,7 +11,8 @@ index.html                 首頁與播放器
 css/style.css              版面與樣式
 js/story-data.js           劇情資料（章節、每一幕的照片、旁白、台詞、預留音訊欄位）
 js/app.js                  播放器程式（不含任何劇情內容）
-js/audio-engine.js         音訊引擎（背景音樂淡入淡出、場景音效、開關與音量）
+js/audio-engine.js         音訊引擎（背景音樂淡入淡出、場景音效、角色配音與旁白、開關與音量）
+js/voice-data.js           配音與旁白時間表（由 tools/make_voice.py 產生）
 assets/images/
   characters-rabbit-and-bear.jpg   角色介紹照片（PDF 第 2 頁）
   scenes/                  六格組合圖切出的單幕圖片（54 張）
@@ -20,11 +21,13 @@ assets/images/
   icon.png                 網站圖示
 assets/audio/music/        背景音樂 5 首（原創合成，CC0）
 assets/audio/sfx/          場景音效 23 種（原創合成，CC0）
-assets/audio/narration/、voice/   旁白與配音的預留資料夾（目前沒有音檔）
+assets/audio/narration/、voice/   旁白與角色配音（目前只有第一章前三幕的試播）
 docs/pdf-inventory.md      PDF 逐頁檢查結果與照片對應表
 docs/audio-credits.md      音樂與音效的來源、授權與章節配置表
+docs/voice-script.md       配音試播腳本、聲線與授權
 tools/crop_panels.py       組合圖切割腳本（記錄每張圖的格線座標）
 tools/make_audio.py        合成所有音樂與音效的腳本
+tools/make_voice.py        產生角色配音與旁白的腳本（Kokoro-82M 開源語音模型）
 manifest.webmanifest       加入主畫面用設定
 .nojekyll                  讓 GitHub Pages 直接提供所有檔案
 ```
@@ -74,17 +77,21 @@ python3 -m http.server 8000
 - 播放器右上角是靜音鍵；播放設定裡有總音效開關、總音量、背景音樂開關與音量、場景音效開關與音量，設定會記在瀏覽器。
 - 暫停時聲音淡出並暫停，繼續時從原處接著播，不會重播同一個音效。暫停中切換到有音效的幕，會在按下繼續時播放一次。
 - 瀏覽器規定聲音必須由點擊啟動，所以按下播放後才會出聲。iPhone、iPad 請確認側邊靜音鍵沒有開啟。
+- 角色配音（熊大、兔兔）與電影旁白可分別開關、調音量；說話時背景音樂自動降到 40%，說完再慢慢恢復，場景音效不受影響。
+- 換幕時立刻停掉上一幕的台詞，同時只會有一句在念；有配音的幕會播到最後一句念完才換幕。
+- 台詞音檔還沒載入時畫面顯示「配音載入中…」並暫停這一幕的時間，最多等 6 秒；載入失敗就提示並只顯示字幕，播放不會卡住。
+- 目前配音只有第一章前三張照片的試播，腳本見 `docs/voice-script.md`。
 - 音檔來源、授權與每章配置見 `docs/audio-credits.md`；要換成其他音檔見 `assets/audio/README.md`。
 
 ## 更新正式網站
 
 把這個資料夾的所有變更推到 GitHub repository 的 `main` 分支即可，GitHub Pages 會在 1–3 分鐘內自動更新。
-若是手動上傳，請確保 `js/audio-engine.js`、`assets/audio/music/`、`assets/audio/sfx/` 都有上傳。
+若是手動上傳，請確保 `js/audio-engine.js`、`js/voice-data.js`、`assets/audio/` 底下所有資料夾都有上傳。
 瀏覽器若還顯示舊版，重新整理一次（iPhone 可關掉分頁重開）。
 
 ## 尚未完成
 
-- 旁白、角色配音：沒有音檔，播放器尚未播放這兩種
+- 旁白、角色配音：只有第一章前三張照片的試播（5 句），其餘 84 幕尚未製作；腳本見 `docs/voice-script.md`
 - 背景音樂與音效是程式合成的，風格偏簡單；之後可換成真人演奏或專業音效庫
 - 結語頁的畫面：PDF 原稿沒有照片
 - 章節標題橫幅的獨立畫面：原圖橫幅跨越三格，目前以文字顯示章節名稱

@@ -1,7 +1,10 @@
 /*
  * KUMA Universe 線上電影劇場：音訊引擎
- * 背景音樂與場景音效都走 Web Audio API：
- *   來源 → 背景音樂匯流排／音效匯流排 → 總音量 → 喇叭
+ * 背景音樂、場景音效、角色配音與旁白都走 Web Audio API：
+ *   背景音樂 → 音樂匯流排 → 說話時降低音量（ducking）─┐
+ *   場景音效 → 音效匯流排 ──────────────────────────────┤
+ *   角色配音 → 配音匯流排 ──────────────────────────────┼→ 總音量 → 喇叭
+ *   旁白     → 旁白匯流排 ──────────────────────────────┘
  * 換曲時交叉淡入淡出；暫停時先淡出再暫停整個音訊環境，繼續時從原處接著播，不會重新觸發音效。
  * iPhone／iPad Safari 規定聲音只能在使用者點擊後啟動，所以 unlock() 必須在點擊事件裡呼叫。
  */
@@ -12,6 +15,8 @@
   var FADE_PAUSE = 0.25;  // 暫停／繼續淡出入秒數
   var SFX_DELAY = 0.28;   // 進入新的一幕後稍等再放音效，快速連按或拖曳進度條時不會連發
   var SKIP_SFX_AFTER = 1.5; // 從一幕中段繼續時（例如恢復進度）不補放開頭音效
+  var DUCK_LEVEL = 0.4;   // 角色說話時，背景音樂降到原本的 40%
+  var LATE_VOICE = 0.75;  // 錯過一句台詞的開始超過這個秒數（拖曳進度條、恢復進度）就不補念
 
   function KumaAudio(library, settings) {
     this.lib = library || { music: {}, sfx: {} };
@@ -28,6 +33,11 @@
     this.playing = false;
     this.listeners = [];
     this.log = [];          // 實際播放過的音效紀錄（測試與除錯用）
+    this.voiceSrcs = [];    // 所有配音與旁白音檔（檢查音檔用）
+    this.decoded = {};      // src -> AudioBuffer（已解碼，可立即播放）
+    this.scene = { token: 0, cues: [], done: {} };
+    this.voiceNodes = [];
+    this.voiceLog = [];     // 實際念過的台詞紀錄（測試與除錯用）
   }
 
   KumaAudio.prototype.supported = function () {
@@ -47,8 +57,14 @@
       this.master = this.ctx.createGain();
       this.musicBus = this.ctx.createGain();
       this.sfxBus = this.ctx.createGain();
-      this.musicBus.connect(this.master);
+      this.duck = this.ctx.createGain();
+      this.voiceBus = this.ctx.createGain();
+      this.narrBus = this.ctx.createGain();
+      this.musicBus.connect(this.duck);
+      this.duck.connect(this.master);
       this.sfxBus.connect(this.master);
+      this.voiceBus.connect(this.master);
+      this.narrBus.connect(this.master);
       this.master.connect(this.ctx.destination);
       this.master.gain.value = 0;
       this.applySettings(true);
@@ -91,6 +107,7 @@
       .then(function (buf) {
         self.status[src] = "ok";
         self.durations[src] = buf.duration;
+        self.decoded[src] = buf;
         self.emit();
         return buf;
       })
@@ -108,16 +125,17 @@
   KumaAudio.prototype.verifyAll = function () {
     var self = this;
     var jobs = [];
+    function check(kind, id, src) {
+      jobs.push(self.load(src).then(function (b) {
+        return { kind: kind, id: id, src: src, ok: true, duration: b.duration };
+      }, function (e) {
+        return { kind: kind, id: id, src: src, ok: false, error: String(e && e.message || e) };
+      }));
+    }
     ["music", "sfx"].forEach(function (kind) {
-      Object.keys(self.lib[kind] || {}).forEach(function (id) {
-        var src = self.lib[kind][id].src;
-        jobs.push(self.load(src).then(function (b) {
-          return { kind: kind, id: id, src: src, ok: true, duration: b.duration };
-        }, function (e) {
-          return { kind: kind, id: id, src: src, ok: false, error: String(e && e.message || e) };
-        }));
-      });
+      Object.keys(self.lib[kind] || {}).forEach(function (id) { check(kind, id, self.lib[kind][id].src); });
     });
+    this.voiceSrcs.forEach(function (src) { check("voice", src, src); });
     return Promise.all(jobs);
   };
 
@@ -132,7 +150,12 @@
       });
       return { total: ids.length, ok: ok, error: err, pending: loading };
     }
-    return { music: count("music"), sfx: count("sfx") };
+    var v = { total: this.voiceSrcs.length, ok: 0, error: 0, pending: 0 };
+    this.voiceSrcs.forEach(function (src) {
+      var st = self.status[src];
+      if (st === "ok") v.ok++; else if (st === "error") v.error++; else v.pending++;
+    });
+    return { music: count("music"), sfx: count("sfx"), voice: v };
   };
 
   KumaAudio.prototype.onChange = function (fn) { this.listeners.push(fn); };
@@ -147,14 +170,14 @@
     var now = this.ctx.currentTime;
     var tc = instant ? 0.001 : 0.08;
     var mv = s.musicOn ? s.musicVolume : 0, sv = s.sfxOn ? s.sfxVolume : 0;
+    var vv = s.voiceOn ? s.voiceVolume : 0, nv = s.narrOn ? s.narrVolume : 0;
+    var buses = [[this.musicBus, mv], [this.sfxBus, sv], [this.voiceBus, vv], [this.narrBus, nv]];
     if (this.ctx.state !== "running" || !this.playing) {
       // 暫停中音訊時間停止，直接設定數值，繼續播放時就是新的音量
-      this.musicBus.gain.cancelScheduledValues(0); this.musicBus.gain.value = mv;
-      this.sfxBus.gain.cancelScheduledValues(0); this.sfxBus.gain.value = sv;
+      buses.forEach(function (b) { b[0].gain.cancelScheduledValues(0); b[0].gain.value = b[1]; });
       return;
     }
-    this.musicBus.gain.setTargetAtTime(mv, now, tc);
-    this.sfxBus.gain.setTargetAtTime(sv, now, tc);
+    buses.forEach(function (b) { b[0].gain.setTargetAtTime(b[1], now, tc); });
     if (this.playing) this.master.gain.setTargetAtTime(s.masterOn ? s.volume : 0, now, tc);
   };
 
@@ -256,9 +279,14 @@
    * 進入新的一幕。musicId 為這一幕的背景音樂，sfxId 為這一幕的音效（可為 null），
    * elapsed 為從這一幕的第幾秒開始（恢復進度時大於 0）。
    */
-  KumaAudio.prototype.enterScene = function (musicId, sfxId, elapsed) {
+  KumaAudio.prototype.enterScene = function (musicId, sfxId, elapsed, cues) {
     var self = this;
     var token = ++this.sceneToken;
+    this.stopVoice(0.08); // 換幕時立刻停掉上一幕的台詞，不讓兩段台詞重疊
+    this.scene = { token: token, cues: cues || [], done: {} };
+    // 從一幕中段進入時，已經錯過的台詞不補念
+    this.scene.cues.forEach(function (c, i) { if ((elapsed || 0) - c.at > LATE_VOICE) self.scene.done[i] = "skipped"; });
+    this.loadVoices(cues);
     this.sceneSfx = null;
     clearTimeout(this.sfxTimer);
     this.pendingSfx = null;
@@ -271,10 +299,120 @@
     this.sfxTimer = setTimeout(function () { self.fireSfx(token, sfxId); }, SFX_DELAY * 1000);
   };
 
-  KumaAudio.prototype.preload = function (musicId, sfxId) {
+  KumaAudio.prototype.preload = function (musicId, sfxId, cues) {
+    this.loadVoices(cues);
     if (!this.ctx) return;
     if (musicId && this.lib.music[musicId]) this.load(this.lib.music[musicId].src).catch(function () {});
     if (sfxId && this.lib.sfx[sfxId]) this.load(this.lib.sfx[sfxId].src).catch(function () {});
+  };
+
+
+  // ---------- 角色配音與旁白 ----------
+  KumaAudio.prototype.registerVoices = function (srcs) {
+    var self = this;
+    srcs.forEach(function (s) { if (self.voiceSrcs.indexOf(s) < 0) self.voiceSrcs.push(s); });
+  };
+
+  KumaAudio.prototype.loadVoices = function (cues) {
+    var self = this;
+    (cues || []).forEach(function (c) {
+      if (self.status[c.src] !== "ok") self.load(c.src).catch(function () {});
+    });
+  };
+
+  KumaAudio.prototype.cueEnabled = function (c) {
+    var s = this.settings;
+    if (!s.masterOn) return false;
+    return c.speaker === "narrator" ? s.narrOn : s.voiceOn;
+  };
+
+  KumaAudio.prototype.setDuck = function (on) {
+    if (!this.ctx) return;
+    var now = this.ctx.currentTime;
+    var g = this.duck.gain;
+    g.cancelScheduledValues(now);
+    if (this.ctx.state !== "running") { g.value = on ? DUCK_LEVEL : 1; return; }
+    g.setTargetAtTime(on ? DUCK_LEVEL : 1, now, on ? 0.12 : 0.4);
+  };
+
+  KumaAudio.prototype.stopVoice = function (secs) {
+    if (!this.ctx) { this.voiceNodes = []; return; }
+    var running = this.ctx.state === "running";
+    var now = this.ctx.currentTime;
+    this.voiceNodes.forEach(function (n) {
+      n.dead = true;
+      try {
+        if (!running) {
+          // 暫停中音訊時間凍結，排程的淡出要等繼續播放才會發生，所以直接斷開
+          n.gain.disconnect();
+          n.source.stop();
+          return;
+        }
+        n.gain.gain.cancelScheduledValues(now);
+        n.gain.gain.setValueAtTime(n.gain.gain.value, now);
+        n.gain.gain.linearRampToValueAtTime(0, now + secs);
+        n.source.stop(now + secs + 0.02);
+      } catch (e) {}
+    });
+    this.voiceNodes = [];
+    this.setDuck(false);
+  };
+
+  KumaAudio.prototype.startCue = function (i, c) {
+    var self = this;
+    var buf = this.decoded[c.src];
+    this.scene.done[i] = "played";
+    var g = this.ctx.createGain();
+    var src = this.ctx.createBufferSource();
+    src.buffer = buf;
+    src.connect(g);
+    g.connect(c.speaker === "narrator" ? this.narrBus : this.voiceBus);
+    src.start();
+    var node = { source: src, gain: g, cue: c, token: this.scene.token };
+    this.voiceNodes.push(node);
+    this.voiceLog.push({ id: c.id, token: this.scene.token, at: this.ctx.currentTime });
+    this.setDuck(true);
+    src.onended = function () {
+      var k = self.voiceNodes.indexOf(node);
+      if (k >= 0) self.voiceNodes.splice(k, 1);
+      if (!self.voiceNodes.length && !node.dead) self.setDuck(false);
+    };
+  };
+
+  /*
+   * 播放器每 0.1 秒呼叫一次，elapsed 是這一幕已播放的秒數。
+   * 回傳 { waiting: 台詞時間到了但音檔還沒載入好（播放器應暫停推進時間）,
+   *        failed: 無法播放的台詞, speaking: 正在念的台詞 }
+   */
+  KumaAudio.prototype.updateVoice = function (elapsed) {
+    var out = { waiting: null, failed: null, speaking: null };
+    var sc = this.scene;
+    if (this.voiceNodes.length) out.speaking = this.voiceNodes[this.voiceNodes.length - 1].cue;
+    if (!this.ctx || !this.playing || !sc.cues.length) return out;
+    for (var i = 0; i < sc.cues.length; i++) {
+      var c = sc.cues[i];
+      if (sc.done[i] || elapsed < c.at) continue;
+      if (!this.cueEnabled(c)) { sc.done[i] = "off"; continue; }
+      if (elapsed - c.at > LATE_VOICE) { sc.done[i] = "skipped"; continue; }
+      var st = this.status[c.src];
+      if (st === "ok" && this.decoded[c.src]) { this.startCue(i, c); out.speaking = c; continue; }
+      if (st === "error") { sc.done[i] = "failed"; out.failed = c; continue; }
+      if (st !== "loading") this.load(c.src).catch(function () {});
+      out.waiting = c;
+      break;
+    }
+    return out;
+  };
+
+  // 等太久的台詞放棄播放（只顯示字幕）
+  KumaAudio.prototype.skipCue = function (c) {
+    var i = this.scene.cues.indexOf(c);
+    if (i >= 0) this.scene.done[i] = "timeout";
+  };
+
+  KumaAudio.prototype.cueState = function (c) {
+    var i = this.scene.cues.indexOf(c);
+    return i >= 0 ? this.scene.done[i] || "pending" : null;
   };
 
   // ---------- 播放、暫停 ----------
@@ -334,6 +472,8 @@
     this.pendingSfx = null;
     this.sceneToken++;
     this.stopSfx(0.3);
+    this.stopVoice(0.2);
+    this.scene = { token: this.sceneToken, cues: [], done: {} };
     if (this.music) { this.fadeOutMusic(this.music, 0.6); this.music = null; }
     this.pause();
     this.emit();

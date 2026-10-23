@@ -12,6 +12,10 @@
     return;
   }
   var film = library.episodes[0];
+  // 角色配音與旁白的時間表（js/voice-data.js，由 tools/make_voice.py 產生）；沒有這個檔案時照常播放
+  var voiceData = window.KUMA_VOICE || { scenes: [] };
+  var voiceByScene = {};
+  voiceData.scenes.forEach(function (v) { voiceByScene[v.chapter + ":" + v.scene] = v; });
 
   var STORE_KEY = "kuma-theater:" + film.id + ":v1";
   var DEFAULTS = { base: 6, autoAdvance: true, text: "m" };
@@ -76,7 +80,10 @@
       chapterStart[ci] = timeline.length;
       ch.scenes.forEach(function (s, si) {
         var d = sceneDuration(s);
-        timeline.push({ ci: ci, si: si, scene: s, chapter: ch, start: t, dur: d });
+        var v = voiceByScene[ch.id + ":" + si];
+        // 有配音的幕至少要放到最後一句念完
+        if (v) d = Math.max(d, v.minDuration);
+        timeline.push({ ci: ci, si: si, scene: s, chapter: ch, start: t, dur: d, cues: v ? v.cues : null });
         t += d;
       });
     });
@@ -176,9 +183,17 @@
     musicOn: stored.musicOn !== false,
     musicVolume: typeof stored.musicVolume === "number" ? stored.musicVolume : 0.55,
     sfxOn: stored.sfxOn !== false,
-    sfxVolume: typeof stored.sfxVolume === "number" ? stored.sfxVolume : 0.7
+    sfxVolume: typeof stored.sfxVolume === "number" ? stored.sfxVolume : 0.7,
+    voiceOn: stored.voiceOn !== false,
+    voiceVolume: typeof stored.voiceVolume === "number" ? stored.voiceVolume : 0.9,
+    narrOn: stored.narrOn !== false,
+    narrVolume: typeof stored.narrVolume === "number" ? stored.narrVolume : 0.9
   };
   var sound = new window.KumaAudio(film.audio, audioSettings);
+  sound.registerVoices(timeline.reduce(function (a, e) {
+    (e.cues || []).forEach(function (c) { a.push(c.src); });
+    return a;
+  }, []));
 
   function musicFor(entry) {
     return entry.scene.music || entry.chapter.music || null;
@@ -186,10 +201,8 @@
   function sfxFor(entry) {
     return (entry.scene.audio && entry.scene.audio.sfx) || null;
   }
-  function voiceCount() {
-    var n = 0;
-    timeline.forEach(function (e) { var a = e.scene.audio || {}; if (a.narration || a.voice) n++; });
-    return n;
+  function voiceSceneCount() {
+    return timeline.filter(function (e) { return e.cues && e.cues.length; }).length;
   }
   function audioRows() {
     var sm = sound.summary();
@@ -199,11 +212,14 @@
       if (c.pending) return { text: c.ok + " / " + c.total + " 個已載入", ok: true };
       return { text: c.ok + " / " + c.total + " 個可播放", ok: true };
     }
-    var v = voiceCount();
+    var v = voiceSceneCount();
+    var vs = state(sm.voice);
     return [
       { name: "背景音樂", s: state(sm.music) },
       { name: "場景音效", s: state(sm.sfx) },
-      { name: "旁白與角色配音", s: v ? { text: v + " 個", ok: true } : { text: "尚未製作，沒有音檔", ok: false } }
+      { name: "旁白與角色配音", s: sm.voice.total
+        ? { text: "試播 " + v + " 幕，" + vs.text + "（其餘 " + (timeline.length - v) + " 幕尚未製作）", ok: vs.ok }
+        : { text: "尚未製作，沒有音檔", ok: false } }
     ];
   }
   function renderAudioStatus(ul, plain) {
@@ -244,7 +260,9 @@
     save({
       masterOn: audioSettings.masterOn, volume: audioSettings.volume,
       musicOn: audioSettings.musicOn, musicVolume: audioSettings.musicVolume,
-      sfxOn: audioSettings.sfxOn, sfxVolume: audioSettings.sfxVolume
+      sfxOn: audioSettings.sfxOn, sfxVolume: audioSettings.sfxVolume,
+      voiceOn: audioSettings.voiceOn, voiceVolume: audioSettings.voiceVolume,
+      narrOn: audioSettings.narrOn, narrVolume: audioSettings.narrVolume
     });
     sound.applySettings();
     renderNowMusic();
@@ -297,8 +315,13 @@
     renderScene(entry, instant);
     preload(index + 1);
     updateChrome();
-    sound.enterScene(musicFor(entry), sfxFor(entry), player.elapsed);
-    if (index + 1 < timeline.length) sound.preload(musicFor(timeline[index + 1]), sfxFor(timeline[index + 1]));
+    player.voiceWait = 0;
+    setVoiceHint(null);
+    sound.enterScene(musicFor(entry), sfxFor(entry), player.elapsed, entry.cues);
+    if (index + 1 < timeline.length) {
+      var nx = timeline[index + 1];
+      sound.preload(musicFor(nx), sfxFor(nx), nx.cues);
+    }
     persist();
   }
 
@@ -419,7 +442,11 @@
         panel.appendChild(el("p", "sub-meta", s.supplemental
           ? ch.label + "・" + s.imageLabel
           : ch.label + "・第 " + s.panelNo + " / 6 幕・照片台詞"));
-        s.lines.forEach(function (l) { panel.appendChild(line(l.who, l.text)); });
+        s.lines.forEach(function (l, i) {
+          var d = line(l.who, l.text);
+          d.setAttribute("data-line", i);
+          panel.appendChild(d);
+        });
       } else if (s.type === "quote") {
         panel.appendChild(el("p", "sub-meta", (s.heading || "本章台詞") + "・" + ch.label));
       }
@@ -471,13 +498,51 @@
     });
   }
 
+  // ---------- 角色配音與旁白 ----------
+  var VOICE_WAIT_MAX = 6; // 台詞音檔最多等 6 秒，載入不了就只顯示字幕，不讓播放器卡住
+  // 回傳 false 代表這一刻要等台詞音檔載入，這一幕的時間先不往前走
+  function voiceStep(dt) {
+    var r = sound.updateVoice(player.elapsed);
+    markSpeaking(r.speaking);
+    if (r.failed) toast("「" + r.failed.text + "」的配音無法播放，這句先只顯示字幕。");
+    if (!r.waiting) {
+      player.voiceWait = 0;
+      setVoiceHint(null);
+      return true;
+    }
+    player.voiceWait += dt;
+    setVoiceHint("配音載入中…");
+    if (player.voiceWait > VOICE_WAIT_MAX) {
+      sound.skipCue(r.waiting);
+      player.voiceWait = 0;
+      setVoiceHint(null);
+      toast("配音載入太久，這句先只顯示字幕。");
+      return true;
+    }
+    return false;
+  }
+  function setVoiceHint(text) {
+    var h = $("voiceHint");
+    if (!h) return;
+    h.hidden = !text;
+    if (text) h.textContent = text;
+  }
+  // 正在念的那一句字幕加上標記
+  function markSpeaking(cue) {
+    var lines = $("subtitlePanel").querySelectorAll(".line");
+    for (var i = 0; i < lines.length; i++) {
+      lines[i].classList.toggle("speaking", !!cue && lines[i].getAttribute("data-line") === String(cue.line));
+    }
+  }
+
   function tick() {
     var now = performance.now();
     var dt = (now - player.lastTick) / 1000;
     player.lastTick = now;
     if (!player.playing || player.waiting) return;
-    player.elapsed += dt;
     var e = timeline[player.index];
+    if (e.cues && !voiceStep(dt)) { updateProgress(); return; }
+    player.elapsed += dt;
     if (player.elapsed >= e.dur) {
       if (player.index >= timeline.length - 1) {
         player.elapsed = e.dur;
@@ -819,13 +884,20 @@
     $("musicOn").disabled = $("sfxOn").disabled = !audioSettings.masterOn;
     $("musicVolume").disabled = !audioSettings.masterOn || !audioSettings.musicOn;
     $("sfxVolume").disabled = !audioSettings.masterOn || !audioSettings.sfxOn;
+    $("voiceOn").disabled = $("narrOn").disabled = !audioSettings.masterOn;
+    $("voiceVolume").disabled = !audioSettings.masterOn || !audioSettings.voiceOn;
+    $("narrVolume").disabled = !audioSettings.masterOn || !audioSettings.narrOn;
   }
   bindToggle("audioMaster", "masterOn");
   bindToggle("musicOn", "musicOn");
   bindToggle("sfxOn", "sfxOn");
+  bindToggle("voiceOn", "voiceOn");
+  bindToggle("narrOn", "narrOn");
   bindRange("volumeRange", "volume", "volumeValue");
   bindRange("musicVolume", "musicVolume", "musicVolumeValue");
   bindRange("sfxVolume", "sfxVolume", "sfxVolumeValue");
+  bindRange("voiceVolume", "voiceVolume", "voiceVolumeValue");
+  bindRange("narrVolume", "narrVolume", "narrVolumeValue");
   syncAudioControls();
   $("muteBtn").addEventListener("click", function () {
     audioSettings.masterOn = !audioSettings.masterOn;
@@ -887,6 +959,11 @@
         master: sound.master ? sound.master.gain.value : null,
         musicBus: sound.musicBus ? sound.musicBus.gain.value : null,
         sfxBus: sound.sfxBus ? sound.sfxBus.gain.value : null,
+        voiceBus: sound.voiceBus ? sound.voiceBus.gain.value : null,
+        narrBus: sound.narrBus ? sound.narrBus.gain.value : null,
+        duck: sound.duck ? sound.duck.gain.value : null,
+        voicePlaying: sound.voiceNodes.map(function (n) { return n.cue.id; }),
+        voiceLog: sound.voiceLog.slice(),
         summary: sound.summary()
       };
     },
