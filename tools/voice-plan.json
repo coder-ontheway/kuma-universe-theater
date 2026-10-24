@@ -1,0 +1,1948 @@
+[
+ {
+  "clip": "序章-對白1",
+  "chapter": "prologue",
+  "cues": [
+   {
+    "scene": 2,
+    "kind": "line",
+    "index": 0,
+    "part": 0,
+    "parts": 1,
+    "speaker": "cony",
+    "who": "兔兔",
+    "say": "熊大！我要去日本玩一個月！",
+    "text": "熊大！我要去日本玩一個月！"
+   },
+   {
+    "scene": 3,
+    "kind": "line",
+    "index": 0,
+    "part": 0,
+    "parts": 1,
+    "speaker": "cony",
+    "who": "兔兔",
+    "say": "我不會開車！",
+    "text": "我不會開車！"
+   },
+   {
+    "scene": 4,
+    "kind": "line",
+    "index": 0,
+    "part": 0,
+    "parts": 1,
+    "speaker": "cony",
+    "who": "兔兔",
+    "say": "機票、住宿、行程，全部交給你！",
+    "text": "機票、住宿、行程，全部交給你！"
+   },
+   {
+    "scene": 5,
+    "kind": "line",
+    "index": 0,
+    "part": 0,
+    "parts": 1,
+    "speaker": "brown",
+    "who": "熊大",
+    "say": "收到指令，立即執行。",
+    "text": "熊大：收到指令，立即執行。"
+   },
+   {
+    "scene": 6,
+    "kind": "line",
+    "index": 0,
+    "part": 0,
+    "parts": 1,
+    "speaker": "cony",
+    "who": "兔兔",
+    "say": "這才叫旅行！",
+    "text": "這才叫旅行！"
+   }
+  ]
+ },
+ {
+  "clip": "序章-對白2",
+  "chapter": "prologue",
+  "cues": [
+   {
+    "scene": 7,
+    "kind": "line",
+    "index": 0,
+    "part": 0,
+    "parts": 1,
+    "speaker": "narrator",
+    "who": "旁白",
+    "say": "一個月後…",
+    "text": "一個月後…"
+   },
+   {
+    "scene": 7,
+    "kind": "line",
+    "index": 1,
+    "part": 0,
+    "parts": 1,
+    "speaker": "cony",
+    "who": "兔兔",
+    "say": "下一站：全世界！",
+    "text": "下一站：全世界！"
+   },
+   {
+    "scene": 13,
+    "kind": "line",
+    "index": 0,
+    "part": 0,
+    "parts": 1,
+    "speaker": "narrator",
+    "who": "旁白",
+    "say": "1個月後",
+    "text": "1個月後"
+   },
+   {
+    "scene": 15,
+    "kind": "line",
+    "index": 0,
+    "part": 0,
+    "parts": 1,
+    "speaker": "brown",
+    "who": "熊大",
+    "say": "已建立日本一個月旅行專案。",
+    "text": "已建立日本一個月旅行專案。"
+   }
+  ]
+ },
+ {
+  "clip": "序章-對白3",
+  "chapter": "prologue",
+  "cues": [
+   {
+    "scene": 15,
+    "kind": "line",
+    "index": 1,
+    "part": 0,
+    "parts": 1,
+    "speaker": "cony",
+    "who": "兔兔",
+    "say": "很好，第一個要求是所有鹿看到我都要鞠躬。",
+    "text": "很好，第一個要求是所有鹿看到我都要鞠躬。"
+   }
+  ]
+ },
+ {
+  "clip": "第一章-對白1",
+  "chapter": "ch1",
+  "cues": [
+   {
+    "scene": 5,
+    "kind": "line",
+    "index": 0,
+    "part": 0,
+    "parts": 1,
+    "speaker": "cony",
+    "who": "兔兔",
+    "say": "牠果然被我的氣勢折服了！",
+    "text": "牠果然被我的氣勢折服了！"
+   },
+   {
+    "scene": 5,
+    "kind": "line",
+    "index": 1,
+    "part": 0,
+    "parts": 1,
+    "speaker": "brown",
+    "who": "熊大",
+    "say": "更正：牠在找仙貝碎屑。",
+    "text": "更正：牠在找仙貝碎屑。"
+   },
+   {
+    "scene": 6,
+    "kind": "line",
+    "index": 0,
+    "part": 0,
+    "parts": 1,
+    "speaker": "cony",
+    "who": "兔兔",
+    "say": "我只是要拍照，不是要成立鹿群公司！",
+    "text": "我只是要拍照，不是要成立鹿群公司！"
+   }
+  ]
+ },
+ {
+  "clip": "第一章-對白2",
+  "chapter": "ch1",
+  "cues": [
+   {
+    "scene": 7,
+    "kind": "line",
+    "index": 0,
+    "part": 0,
+    "parts": 1,
+    "speaker": "cony",
+    "who": "兔兔",
+    "say": "熊大，你連仙貝都要管，我到底是不是主人？",
+    "text": "熊大，你連仙貝都要管，我到底是不是主人？"
+   },
+   {
+    "scene": 7,
+    "kind": "line",
+    "index": 1,
+    "part": 0,
+    "parts": 1,
+    "speaker": "brown",
+    "who": "熊大",
+    "say": "您是主人，但仙貝由我代管。",
+    "text": "您是主人，但仙貝由我代管。"
+   },
+   {
+    "scene": 7,
+    "kind": "line",
+    "index": 2,
+    "part": 0,
+    "parts": 1,
+    "speaker": "narrator",
+    "who": "旁白",
+    "say": "新增任務：被兔兔嫌棄。",
+    "text": "新增任務：被兔兔嫌棄。"
+   }
+  ]
+ },
+ {
+  "clip": "第一章-對白3",
+  "chapter": "ch1",
+  "cues": [
+   {
+    "scene": 8,
+    "kind": "line",
+    "index": 0,
+    "part": 0,
+    "parts": 1,
+    "speaker": "cony",
+    "who": "兔兔",
+    "say": "你真的很欠嫌棄。",
+    "text": "你真的很欠嫌棄。"
+   }
+  ]
+ },
+ {
+  "clip": "第二章-對白1",
+  "chapter": "ch2",
+  "cues": [
+   {
+    "scene": 2,
+    "kind": "line",
+    "index": 0,
+    "part": 0,
+    "parts": 1,
+    "speaker": "cony",
+    "who": "兔兔",
+    "say": "熊大，我決定了。",
+    "text": "熊大，我決定了。"
+   },
+   {
+    "scene": 3,
+    "kind": "line",
+    "index": 0,
+    "part": 0,
+    "parts": 1,
+    "speaker": "cony",
+    "who": "兔兔",
+    "say": "從今天開始，關西歸我管理！",
+    "text": "從今天開始，關西歸我管理！"
+   },
+   {
+    "scene": 4,
+    "kind": "line",
+    "index": 0,
+    "part": 0,
+    "parts": 1,
+    "speaker": "cony",
+    "who": "兔兔",
+    "say": "我只是要發表演說！",
+    "text": "我只是要發表演說！"
+   },
+   {
+    "scene": 5,
+    "kind": "line",
+    "index": 0,
+    "part": 0,
+    "parts": 1,
+    "speaker": "cony",
+    "who": "兔兔",
+    "say": "你現在就休息？我們還沒上城欸！",
+    "text": "你現在就休息？我們還沒上城欸！"
+   }
+  ]
+ },
+ {
+  "clip": "第二章-對白2",
+  "chapter": "ch2",
+  "cues": [
+   {
+    "scene": 5,
+    "kind": "line",
+    "index": 1,
+    "part": 0,
+    "parts": 1,
+    "speaker": "brown",
+    "who": "熊大",
+    "say": "收到。停止休息，執行上城。",
+    "text": "收到。停止休息，執行上城。"
+   },
+   {
+    "scene": 6,
+    "kind": "line",
+    "index": 0,
+    "part": 0,
+    "parts": 1,
+    "speaker": "brown",
+    "who": "熊大",
+    "say": "大阪城請注意，兔兔已抵達。請準備接受統治。",
+    "text": "大阪城請注意，兔兔已抵達。請準備接受統治。"
+   },
+   {
+    "scene": 7,
+    "kind": "line",
+    "index": 0,
+    "part": 0,
+    "parts": 1,
+    "speaker": "cony",
+    "who": "兔兔",
+    "say": "我宣布，熊大降職！",
+    "text": "我宣布，熊大降職！"
+   }
+  ]
+ },
+ {
+  "clip": "第二章-對白3",
+  "chapter": "ch2",
+  "cues": [
+   {
+    "scene": 7,
+    "kind": "line",
+    "index": 1,
+    "part": 0,
+    "parts": 1,
+    "speaker": "brown",
+    "who": "熊大",
+    "say": "收到。普通熊繼續執行。",
+    "text": "收到。普通熊繼續執行。"
+   },
+   {
+    "scene": 7,
+    "kind": "line",
+    "index": 2,
+    "part": 0,
+    "parts": 1,
+    "speaker": "narrator",
+    "who": "旁白",
+    "say": "降職成功，工作完全不變。",
+    "text": "降職成功，工作完全不變。"
+   },
+   {
+    "scene": 8,
+    "kind": "line",
+    "index": 0,
+    "part": 0,
+    "parts": 1,
+    "speaker": "brown",
+    "who": "熊大",
+    "say": "降職有效性為零。",
+    "text": "降職有效性為零。"
+   }
+  ]
+ },
+ {
+  "clip": "第三章-對白1",
+  "chapter": "ch3",
+  "cues": [
+   {
+    "scene": 2,
+    "kind": "line",
+    "index": 0,
+    "part": 0,
+    "parts": 1,
+    "speaker": "cony",
+    "who": "兔兔",
+    "say": "熊大，今天我要一個低調的行程。",
+    "text": "熊大，今天我要一個低調的行程。"
+   },
+   {
+    "scene": 3,
+    "kind": "line",
+    "index": 0,
+    "part": 0,
+    "parts": 1,
+    "speaker": "cony",
+    "who": "兔兔",
+    "say": "竹林裡必須鋪滿紅地毯！",
+    "text": "竹林裡必須鋪滿紅地毯！"
+   },
+   {
+    "scene": 4,
+    "kind": "line",
+    "index": 0,
+    "part": 0,
+    "parts": 1,
+    "speaker": "narrator",
+    "who": "旁白",
+    "say": "紅地毯鋪設工程：全長待確認。",
+    "text": "紅地毯鋪設工程：全長待確認。"
+   },
+   {
+    "scene": 5,
+    "kind": "line",
+    "index": 0,
+    "part": 0,
+    "parts": 1,
+    "speaker": "cony",
+    "who": "兔兔",
+    "say": "這裡歪了三毫米！",
+    "text": "這裡歪了三毫米！"
+   }
+  ]
+ },
+ {
+  "clip": "第三章-對白2",
+  "chapter": "ch3",
+  "cues": [
+   {
+    "scene": 5,
+    "kind": "line",
+    "index": 1,
+    "part": 0,
+    "parts": 1,
+    "speaker": "brown",
+    "who": "熊大",
+    "say": "收到，調整三毫米。",
+    "text": "收到，調整三毫米。"
+   },
+   {
+    "scene": 6,
+    "kind": "line",
+    "index": 0,
+    "part": 0,
+    "parts": 1,
+    "speaker": "cony",
+    "who": "兔兔",
+    "say": "這才叫低調。",
+    "text": "這才叫低調。"
+   },
+   {
+    "scene": 7,
+    "kind": "line",
+    "index": 0,
+    "part": 0,
+    "parts": 1,
+    "speaker": "cony",
+    "who": "兔兔",
+    "say": "熊大，紅地毯不能濕！",
+    "text": "熊大，紅地毯不能濕！"
+   },
+   {
+    "scene": 7,
+    "kind": "line",
+    "index": 1,
+    "part": 0,
+    "parts": 1,
+    "speaker": "brown",
+    "who": "熊大",
+    "say": "收到。啟動紅地毯防水模式。",
+    "text": "收到。啟動紅地毯防水模式。"
+   },
+   {
+    "scene": 7,
+    "kind": "line",
+    "index": 2,
+    "part": 0,
+    "parts": 1,
+    "speaker": "brown",
+    "who": "熊大",
+    "say": "今日步數，三萬八千步。",
+    "text": "熊大：今日步數，三萬八千步。"
+   }
+  ]
+ },
+ {
+  "clip": "第四章-對白1",
+  "chapter": "ch4",
+  "cues": [
+   {
+    "scene": 2,
+    "kind": "line",
+    "index": 0,
+    "part": 0,
+    "parts": 1,
+    "speaker": "cony",
+    "who": "兔兔",
+    "say": "熊大，我要拍一張最有氣勢的照片。",
+    "text": "熊大，我要拍一張最有氣勢的照片。"
+   },
+   {
+    "scene": 3,
+    "kind": "line",
+    "index": 0,
+    "part": 0,
+    "parts": 1,
+    "speaker": "cony",
+    "who": "兔兔",
+    "say": "所有人都要停下來等我走完！",
+    "text": "所有人都要停下來等我走完！"
+   },
+   {
+    "scene": 4,
+    "kind": "line",
+    "index": 0,
+    "part": 0,
+    "parts": 1,
+    "speaker": "narrator",
+    "who": "旁白",
+    "say": "行人暫停計畫，正式啟動。",
+    "text": "行人暫停計畫，正式啟動。"
+   }
+  ]
+ },
+ {
+  "clip": "第四章-對白2",
+  "chapter": "ch4",
+  "cues": [
+   {
+    "scene": 5,
+    "kind": "line",
+    "index": 0,
+    "part": 0,
+    "parts": 1,
+    "speaker": "brown",
+    "who": "熊大",
+    "say": "全體行人，請原地保持不動。",
+    "text": "全體行人，請原地保持不動。"
+   },
+   {
+    "scene": 6,
+    "kind": "line",
+    "index": 0,
+    "part": 0,
+    "parts": 1,
+    "speaker": "cony",
+    "who": "兔兔",
+    "say": "熊大，我走得夠有氣勢嗎？",
+    "text": "熊大，我走得夠有氣勢嗎？"
+   },
+   {
+    "scene": 6,
+    "kind": "line",
+    "index": 1,
+    "part": 0,
+    "parts": 1,
+    "speaker": "brown",
+    "who": "熊大",
+    "say": "目前氣勢達成率百分之八十七。",
+    "text": "目前氣勢達成率百分之八十七。"
+   }
+  ]
+ },
+ {
+  "clip": "第四章-對白3",
+  "chapter": "ch4",
+  "cues": [
+   {
+    "scene": 7,
+    "kind": "line",
+    "index": 0,
+    "part": 0,
+    "parts": 1,
+    "speaker": "cony",
+    "who": "兔兔",
+    "say": "很好，下一次我要走兩趟！",
+    "text": "很好，下一次我要走兩趟！"
+   },
+   {
+    "scene": 7,
+    "kind": "line",
+    "index": 1,
+    "part": 0,
+    "parts": 1,
+    "speaker": "brown",
+    "who": "熊大",
+    "say": "收到。已預約澀谷十字路口第二回合。",
+    "text": "收到。已預約澀谷十字路口第二回合。"
+   },
+   {
+    "scene": 7,
+    "kind": "line",
+    "index": 2,
+    "part": 0,
+    "parts": 1,
+    "speaker": "brown",
+    "who": "熊大",
+    "say": "今日阻塞行人約三千名。",
+    "text": "熊大：今日阻塞行人約三千名。"
+   }
+  ]
+ },
+ {
+  "clip": "第四章-對白4",
+  "chapter": "ch4",
+  "cues": [
+   {
+    "scene": 8,
+    "kind": "line",
+    "index": 0,
+    "part": 0,
+    "parts": 1,
+    "speaker": "cony",
+    "who": "兔兔",
+    "say": "我走得夠有氣勢嗎？",
+    "text": "我走得夠有氣勢嗎？"
+   }
+  ]
+ },
+ {
+  "clip": "第五章-對白1",
+  "chapter": "ch5",
+  "cues": [
+   {
+    "scene": 2,
+    "kind": "line",
+    "index": 0,
+    "part": 0,
+    "parts": 1,
+    "speaker": "cony",
+    "who": "兔兔",
+    "say": "今天我要把整個月的行程再玩一次！",
+    "text": "今天我要把整個月的行程再玩一次！"
+   },
+   {
+    "scene": 3,
+    "kind": "line",
+    "index": 0,
+    "part": 0,
+    "parts": 1,
+    "speaker": "narrator",
+    "who": "旁白",
+    "say": "一日環遊日本：極限版。",
+    "text": "一日環遊日本：極限版。"
+   },
+   {
+    "scene": 3,
+    "kind": "line",
+    "index": 1,
+    "part": 0,
+    "parts": 1,
+    "speaker": "cony",
+    "who": "兔兔",
+    "say": "哇～好厲害！真的全部都排進一天耶！",
+    "text": "哇～好厲害！真的全部都排進一天耶！"
+   }
+  ]
+ },
+ {
+  "clip": "第五章-對白2",
+  "chapter": "ch5",
+  "cues": [
+   {
+    "scene": 3,
+    "kind": "line",
+    "index": 2,
+    "part": 0,
+    "parts": 1,
+    "speaker": "brown",
+    "who": "熊大",
+    "say": "已最佳化路線、交通、時間，保證完成。",
+    "text": "已最佳化路線、交通、時間，保證完成。"
+   },
+   {
+    "scene": 4,
+    "kind": "line",
+    "index": 0,
+    "part": 0,
+    "parts": 1,
+    "speaker": "brown",
+    "who": "熊大",
+    "say": "東京早餐、京都參拜、奈良鞠躬、大阪章魚燒、北海道看雪。",
+    "text": "東京早餐、京都參拜、奈良鞠躬、大阪章魚燒、北海道看雪。"
+   }
+  ]
+ },
+ {
+  "clip": "第五章-對白3",
+  "chapter": "ch5",
+  "cues": [
+   {
+    "scene": 5,
+    "kind": "line",
+    "index": 0,
+    "part": 0,
+    "parts": 1,
+    "speaker": "cony",
+    "who": "兔兔",
+    "say": "我要悠閒、浪漫、慢慢逛！",
+    "text": "我要悠閒、浪漫、慢慢逛！"
+   },
+   {
+    "scene": 5,
+    "kind": "line",
+    "index": 1,
+    "part": 0,
+    "parts": 1,
+    "speaker": "brown",
+    "who": "熊大",
+    "say": "收到。悠閒模式啟動。",
+    "text": "收到。悠閒模式啟動。"
+   },
+   {
+    "scene": 6,
+    "kind": "line",
+    "index": 0,
+    "part": 0,
+    "parts": 1,
+    "speaker": "cony",
+    "who": "兔兔",
+    "say": "不准做表格、不准報時間、不准分析。",
+    "text": "不准做表格、不准報時間、不准分析。"
+   },
+   {
+    "scene": 7,
+    "kind": "line",
+    "index": 0,
+    "part": 0,
+    "parts": 1,
+    "speaker": "cony",
+    "who": "兔兔",
+    "say": "熊大！我看到了喔！",
+    "text": "熊大！我看到了喔！"
+   }
+  ]
+ },
+ {
+  "clip": "第五章-對白4",
+  "chapter": "ch5",
+  "cues": [
+   {
+    "scene": 7,
+    "kind": "line",
+    "index": 1,
+    "part": 0,
+    "parts": 1,
+    "speaker": "brown",
+    "who": "熊大",
+    "say": "收到。資料夾改名。",
+    "text": "收到。資料夾改名。"
+   },
+   {
+    "scene": 7,
+    "kind": "line",
+    "index": 3,
+    "part": 0,
+    "parts": 1,
+    "speaker": "narrator",
+    "who": "旁白",
+    "say": "下一個指令：明天出發。",
+    "text": "下一個指令：明天出發。"
+   }
+  ]
+ },
+ {
+  "clip": "第六章-對白1",
+  "chapter": "ch6",
+  "cues": [
+   {
+    "scene": 2,
+    "kind": "line",
+    "index": 0,
+    "part": 0,
+    "parts": 1,
+    "speaker": "cony",
+    "who": "兔兔",
+    "say": "熊大，我想到一個很棒的主意。",
+    "text": "熊大，我想到一個很棒的主意。"
+   },
+   {
+    "scene": 3,
+    "kind": "line",
+    "index": 0,
+    "part": 0,
+    "parts": 1,
+    "speaker": "cony",
+    "who": "兔兔",
+    "say": "我要把晴空塔當成我的個人登機箱！",
+    "text": "我要把晴空塔當成我的個人登機箱！"
+   },
+   {
+    "scene": 4,
+    "kind": "line",
+    "index": 0,
+    "part": 0,
+    "parts": 1,
+    "speaker": "narrator",
+    "who": "旁白",
+    "say": "登機箱尺寸檢查：嚴重超標。",
+    "text": "登機箱尺寸檢查：嚴重超標。"
+   }
+  ]
+ },
+ {
+  "clip": "第六章-對白2",
+  "chapter": "ch6",
+  "cues": [
+   {
+    "scene": 5,
+    "kind": "line",
+    "index": 0,
+    "part": 0,
+    "parts": 1,
+    "speaker": "brown",
+    "who": "熊大",
+    "say": "已完成登機箱外殼。",
+    "text": "已完成登機箱外殼。"
+   },
+   {
+    "scene": 6,
+    "kind": "line",
+    "index": 0,
+    "part": 0,
+    "parts": 1,
+    "speaker": "cony",
+    "who": "兔兔",
+    "say": "它只是稍微大一點！",
+    "text": "它只是稍微大一點！"
+   },
+   {
+    "scene": 6,
+    "kind": "line",
+    "index": 1,
+    "part": 0,
+    "parts": 1,
+    "speaker": "brown",
+    "who": "熊大",
+    "say": "重量超過標準三千八百倍。",
+    "text": "重量超過標準三千八百倍。"
+   },
+   {
+    "scene": 7,
+    "kind": "line",
+    "index": 0,
+    "part": 0,
+    "parts": 1,
+    "speaker": "cony",
+    "who": "兔兔",
+    "say": "很好，至少我的登機箱不會被弄丟！",
+    "text": "很好，至少我的登機箱不會被弄丟！"
+   }
+  ]
+ },
+ {
+  "clip": "第六章-對白3",
+  "chapter": "ch6",
+  "cues": [
+   {
+    "scene": 7,
+    "kind": "line",
+    "index": 1,
+    "part": 0,
+    "parts": 1,
+    "speaker": "brown",
+    "who": "熊大",
+    "say": "登機失敗，觀光成功。",
+    "text": "熊大：登機失敗，觀光成功。"
+   },
+   {
+    "scene": 8,
+    "kind": "line",
+    "index": 0,
+    "part": 0,
+    "parts": 1,
+    "speaker": "brown",
+    "who": "熊大",
+    "say": "收到。登機失敗，觀光成功。",
+    "text": "收到。登機失敗，觀光成功。"
+   }
+  ]
+ },
+ {
+  "clip": "番外篇-對白1",
+  "chapter": "extra",
+  "cues": [
+   {
+    "scene": 2,
+    "kind": "line",
+    "index": 0,
+    "part": 0,
+    "parts": 1,
+    "speaker": "brown",
+    "who": "熊大",
+    "say": "自主任務啟動。",
+    "text": "自主任務啟動。"
+   },
+   {
+    "scene": 3,
+    "kind": "line",
+    "index": 0,
+    "part": 0,
+    "parts": 1,
+    "speaker": "brown",
+    "who": "熊大",
+    "say": "日本搬運清單，第一批完成。",
+    "text": "日本搬運清單，第一批完成。"
+   },
+   {
+    "scene": 4,
+    "kind": "line",
+    "index": 0,
+    "part": 0,
+    "parts": 1,
+    "speaker": "cony",
+    "who": "兔兔",
+    "say": "熊大，你在做什麼？",
+    "text": "熊大，你在做什麼？"
+   },
+   {
+    "scene": 4,
+    "kind": "line",
+    "index": 1,
+    "part": 0,
+    "parts": 1,
+    "speaker": "brown",
+    "who": "熊大",
+    "say": "執行最終任務。",
+    "text": "執行最終任務。"
+   }
+  ]
+ },
+ {
+  "clip": "番外篇-對白2",
+  "chapter": "extra",
+  "cues": [
+   {
+    "scene": 5,
+    "kind": "line",
+    "index": 0,
+    "part": 0,
+    "parts": 1,
+    "speaker": "cony",
+    "who": "兔兔",
+    "say": "我說的是把回憶帶回來，不是把日本搬回來！",
+    "text": "我說的是把回憶帶回來，不是把日本搬回來！"
+   },
+   {
+    "scene": 6,
+    "kind": "line",
+    "index": 0,
+    "part": 0,
+    "parts": 1,
+    "speaker": "brown",
+    "who": "熊大",
+    "say": "日本已完整搬入，完成率百分之百。",
+    "text": "日本已完整搬入，完成率百分之百。"
+   },
+   {
+    "scene": 6,
+    "kind": "line",
+    "index": 1,
+    "part": 0,
+    "parts": 1,
+    "speaker": "cony",
+    "who": "兔兔",
+    "say": "你真的完全不懂比喻！",
+    "text": "你真的完全不懂比喻！"
+   }
+  ]
+ },
+ {
+  "clip": "番外篇-對白3",
+  "chapter": "extra",
+  "cues": [
+   {
+    "scene": 7,
+    "kind": "line",
+    "index": 0,
+    "part": 0,
+    "parts": 1,
+    "speaker": "cony",
+    "who": "兔兔",
+    "say": "算了……至少不用再買機票。",
+    "text": "算了……至少不用再買機票。"
+   },
+   {
+    "scene": 7,
+    "kind": "line",
+    "index": 1,
+    "part": 0,
+    "parts": 1,
+    "speaker": "brown",
+    "who": "熊大",
+    "say": "收到。下一個自主任務：把全世界搬進來。",
+    "text": "收到。下一個自主任務：把全世界搬進來。"
+   },
+   {
+    "scene": 7,
+    "kind": "line",
+    "index": 2,
+    "part": 0,
+    "parts": 1,
+    "speaker": "cony",
+    "who": "兔兔",
+    "say": "熊大，停止自主！",
+    "text": "兔兔：熊大，停止自主！"
+   }
+  ]
+ },
+ {
+  "clip": "結語-對白1",
+  "chapter": "epilogue",
+  "cues": [
+   {
+    "scene": 3,
+    "kind": "line",
+    "index": 0,
+    "part": 0,
+    "parts": 1,
+    "speaker": "cony",
+    "who": "兔兔",
+    "say": "熊大，幫我安排一趟環遊世界，而且要明天出發。",
+    "text": "熊大，幫我安排一趟環遊世界，而且要明天出發。"
+   }
+  ]
+ },
+ {
+  "clip": "開場-旁白1",
+  "chapter": "opening",
+  "cues": [
+   {
+    "scene": 0,
+    "kind": "narration",
+    "index": 0,
+    "part": 0,
+    "parts": 2,
+    "speaker": "narrator",
+    "who": "旁白",
+    "say": "熊大只會忠實執行指令：訂票、導航、搬行李、翻譯、拍照、做表格，還有把比喻誤解成施工計畫。",
+    "text": "熊大只會忠實執行指令：訂票、導航、搬行李、翻譯、拍照、做表格，還有把比喻誤解成施工計畫。標準回覆只有一句：「收到，立即執行。」"
+   }
+  ]
+ },
+ {
+  "clip": "開場-旁白2",
+  "chapter": "opening",
+  "cues": [
+   {
+    "scene": 0,
+    "kind": "narration",
+    "index": 0,
+    "part": 1,
+    "parts": 2,
+    "speaker": "narrator",
+    "who": "旁白",
+    "say": "標準回覆只有一句：「收到，立即執行。」",
+    "text": "熊大只會忠實執行指令：訂票、導航、搬行李、翻譯、拍照、做表格，還有把比喻誤解成施工計畫。標準回覆只有一句：「收到，立即執行。」"
+   },
+   {
+    "scene": 1,
+    "kind": "narration",
+    "index": 0,
+    "part": 0,
+    "parts": 1,
+    "speaker": "narrator",
+    "who": "旁白",
+    "say": "「兔兔說「低調」，熊大就鋪紅地毯；兔兔說「帶回回憶」，熊大就差點把日本搬回家。」",
+    "text": "「兔兔說「低調」，熊大就鋪紅地毯；兔兔說「帶回回憶」，熊大就差點把日本搬回家。」"
+   }
+  ]
+ },
+ {
+  "clip": "開場-旁白3",
+  "chapter": "opening",
+  "cues": [
+   {
+    "scene": 2,
+    "kind": "narration",
+    "index": 0,
+    "part": 0,
+    "parts": 2,
+    "speaker": "narrator",
+    "who": "旁白",
+    "say": "兔兔是本次日本一個月旅行的唯一決策者。",
+    "text": "兔兔是本次日本一個月旅行的唯一決策者。她負責提出華麗、任性、常常不可能完成的要求，並且在熊大完成後，再嫌棄熊大做得太死板。"
+   }
+  ]
+ },
+ {
+  "clip": "開場-旁白4",
+  "chapter": "opening",
+  "cues": [
+   {
+    "scene": 2,
+    "kind": "narration",
+    "index": 0,
+    "part": 1,
+    "parts": 2,
+    "speaker": "narrator",
+    "who": "旁白",
+    "say": "她負責提出華麗、任性、常常不可能完成的要求，並且在熊大完成後，再嫌棄熊大做得太死板。",
+    "text": "兔兔是本次日本一個月旅行的唯一決策者。她負責提出華麗、任性、常常不可能完成的要求，並且在熊大完成後，再嫌棄熊大做得太死板。"
+   }
+  ]
+ },
+ {
+  "clip": "開場-旁白5",
+  "chapter": "opening",
+  "cues": [
+   {
+    "scene": 3,
+    "kind": "narration",
+    "index": 0,
+    "part": 0,
+    "parts": 2,
+    "speaker": "narrator",
+    "who": "旁白",
+    "say": "兔兔的每一個命令都很有氣勢，熊大的每一次執行都很認真。",
+    "text": "兔兔的每一個命令都很有氣勢，熊大的每一次執行都很認真。當兩者相遇，普通旅行就會升級成日本大型荒謬工程。"
+   }
+  ]
+ },
+ {
+  "clip": "開場-旁白6",
+  "chapter": "opening",
+  "cues": [
+   {
+    "scene": 3,
+    "kind": "narration",
+    "index": 0,
+    "part": 1,
+    "parts": 2,
+    "speaker": "narrator",
+    "who": "旁白",
+    "say": "當兩者相遇，普通旅行就會升級成日本大型荒謬工程。",
+    "text": "兔兔的每一個命令都很有氣勢，熊大的每一次執行都很認真。當兩者相遇，普通旅行就會升級成日本大型荒謬工程。"
+   }
+  ]
+ },
+ {
+  "clip": "序章-旁白1",
+  "chapter": "prologue",
+  "cues": [
+   {
+    "scene": 1,
+    "kind": "narration",
+    "index": 0,
+    "part": 0,
+    "parts": 2,
+    "speaker": "narrator",
+    "who": "旁白",
+    "say": "兔兔想去日本一個月，卻不會開車、不想自己訂機票，也不想研究交通。",
+    "text": "兔兔想去日本一個月，卻不會開車、不想自己訂機票，也不想研究交通。於是她把所有事情交給熊大，並且宣布："
+   },
+   {
+    "scene": 1,
+    "kind": "narration",
+    "index": 0,
+    "part": 1,
+    "parts": 2,
+    "speaker": "narrator",
+    "who": "旁白",
+    "say": "於是她把所有事情交給熊大，並且宣布：",
+    "text": "兔兔想去日本一個月，卻不會開車、不想自己訂機票，也不想研究交通。於是她把所有事情交給熊大，並且宣布："
+   }
+  ]
+ },
+ {
+  "clip": "序章-旁白2",
+  "chapter": "prologue",
+  "cues": [
+   {
+    "scene": 1,
+    "kind": "narration",
+    "index": 1,
+    "part": 0,
+    "parts": 1,
+    "speaker": "narrator",
+    "who": "旁白",
+    "say": "「我要一趟完全不用操心的旅行。」",
+    "text": "「我要一趟完全不用操心的旅行。」"
+   },
+   {
+    "scene": 14,
+    "kind": "narration",
+    "index": 0,
+    "part": 0,
+    "parts": 2,
+    "speaker": "narrator",
+    "who": "旁白",
+    "say": "熊大把這句話轉換成一份完整的執行規格：交通要準時、住宿要舒適、景點要拍照、",
+    "text": "熊大把這句話轉換成一份完整的執行規格：交通要準時、住宿要舒適、景點要拍照、每個臨時要求都要立即完成。"
+   }
+  ]
+ },
+ {
+  "clip": "序章-旁白3",
+  "chapter": "prologue",
+  "cues": [
+   {
+    "scene": 14,
+    "kind": "narration",
+    "index": 0,
+    "part": 1,
+    "parts": 2,
+    "speaker": "narrator",
+    "who": "旁白",
+    "say": "每個臨時要求都要立即完成。",
+    "text": "熊大把這句話轉換成一份完整的執行規格：交通要準時、住宿要舒適、景點要拍照、每個臨時要求都要立即完成。"
+   }
+  ]
+ },
+ {
+  "clip": "序章-旁白4",
+  "chapter": "prologue",
+  "cues": [
+   {
+    "scene": 14,
+    "kind": "narration",
+    "index": 1,
+    "part": 0,
+    "parts": 1,
+    "speaker": "narrator",
+    "who": "旁白",
+    "say": "從那一刻起，這趟旅行便不再只是旅行，而是一場由兔兔下令、熊大自動執行的跨日本大型專案。",
+    "text": "從那一刻起，這趟旅行便不再只是旅行，而是一場由兔兔下令、熊大自動執行的跨日本大型專案。"
+   }
+  ]
+ },
+ {
+  "clip": "第一章-旁白1",
+  "chapter": "ch1",
+  "cues": [
+   {
+    "scene": 1,
+    "kind": "narration",
+    "index": 0,
+    "part": 0,
+    "parts": 2,
+    "speaker": "narrator",
+    "who": "旁白",
+    "say": "奈良公園的鹿原本只是低頭找仙貝，兔兔卻認定那是對她的敬意。",
+    "text": "奈良公園的鹿原本只是低頭找仙貝，兔兔卻認定那是對她的敬意。熊大立即建立「鹿群禮儀管理流程」，要求鹿一號九十度鞠躬、停留兩秒，還準備替鹿王安排面試。"
+   }
+  ]
+ },
+ {
+  "clip": "第一章-旁白2",
+  "chapter": "ch1",
+  "cues": [
+   {
+    "scene": 1,
+    "kind": "narration",
+    "index": 0,
+    "part": 1,
+    "parts": 2,
+    "speaker": "narrator",
+    "who": "旁白",
+    "say": "熊大立即建立「鹿群禮儀管理流程」，要求鹿一號九十度鞠躬、停留兩秒，還準備替鹿王安排面試。",
+    "text": "奈良公園的鹿原本只是低頭找仙貝，兔兔卻認定那是對她的敬意。熊大立即建立「鹿群禮儀管理流程」，要求鹿一號九十度鞠躬、停留兩秒，還準備替鹿王安排面試。"
+   }
+  ]
+ },
+ {
+  "clip": "第一章-旁白3",
+  "chapter": "ch1",
+  "cues": [
+   {
+    "scene": 1,
+    "kind": "narration",
+    "index": 1,
+    "part": 0,
+    "parts": 1,
+    "speaker": "narrator",
+    "who": "旁白",
+    "say": "兔兔想拍一張貴賓照，熊大卻開始清場、分配仙貝權限，甚至把「我只是要拍照」理解成「成立鹿群公司」。",
+    "text": "兔兔想拍一張貴賓照，熊大卻開始清場、分配仙貝權限，甚至把「我只是要拍照」理解成「成立鹿群公司」。"
+   }
+  ]
+ },
+ {
+  "clip": "第二章-旁白1",
+  "chapter": "ch2",
+  "cues": [
+   {
+    "scene": 1,
+    "kind": "narration",
+    "index": 0,
+    "part": 0,
+    "parts": 2,
+    "speaker": "narrator",
+    "who": "旁白",
+    "say": "兔兔站在大阪城前，宣布從今天起關西歸她管理。",
+    "text": "兔兔站在大阪城前，宣布從今天起關西歸她管理。熊大沒有質疑，只是立刻準備擴音器、紅地毯、演說稿，以及一份正式的《大阪城新主人交接申請表》。"
+   }
+  ]
+ },
+ {
+  "clip": "第二章-旁白2",
+  "chapter": "ch2",
+  "cues": [
+   {
+    "scene": 1,
+    "kind": "narration",
+    "index": 0,
+    "part": 1,
+    "parts": 2,
+    "speaker": "narrator",
+    "who": "旁白",
+    "say": "熊大沒有質疑，只是立刻準備擴音器、紅地毯、演說稿，以及一份正式的《大阪城新主人交接申請表》。",
+    "text": "兔兔站在大阪城前，宣布從今天起關西歸她管理。熊大沒有質疑，只是立刻準備擴音器、紅地毯、演說稿，以及一份正式的《大阪城新主人交接申請表》。"
+   }
+  ]
+ },
+ {
+  "clip": "第二章-旁白3",
+  "chapter": "ch2",
+  "cues": [
+   {
+    "scene": 1,
+    "kind": "narration",
+    "index": 1,
+    "part": 0,
+    "parts": 2,
+    "speaker": "narrator",
+    "who": "旁白",
+    "say": "當兔兔說「恢復熊大休息」，熊大便當場坐下；當兔兔又說「停止休息」，他便立刻起身。",
+    "text": "當兔兔說「恢復熊大休息」，熊大便當場坐下；當兔兔又說「停止休息」，他便立刻起身。最後兔兔宣布熊大降職，熊大則確認：降職後仍然要訂票、導航、搬行李、拍照與付款。"
+   }
+  ]
+ },
+ {
+  "clip": "第二章-旁白4",
+  "chapter": "ch2",
+  "cues": [
+   {
+    "scene": 1,
+    "kind": "narration",
+    "index": 1,
+    "part": 1,
+    "parts": 2,
+    "speaker": "narrator",
+    "who": "旁白",
+    "say": "最後兔兔宣布熊大降職，熊大則確認：降職後仍然要訂票、導航、搬行李、拍照與付款。",
+    "text": "當兔兔說「恢復熊大休息」，熊大便當場坐下；當兔兔又說「停止休息」，他便立刻起身。最後兔兔宣布熊大降職，熊大則確認：降職後仍然要訂票、導航、搬行李、拍照與付款。"
+   }
+  ]
+ },
+ {
+  "clip": "第三章-旁白1",
+  "chapter": "ch3",
+  "cues": [
+   {
+    "scene": 1,
+    "kind": "narration",
+    "index": 0,
+    "part": 0,
+    "parts": 2,
+    "speaker": "narrator",
+    "who": "旁白",
+    "say": "兔兔說今天要走一個「低調」行程，接著命令熊大把嵐山竹林鋪滿紅地毯。",
+    "text": "兔兔說今天要走一個「低調」行程，接著命令熊大把嵐山竹林鋪滿紅地毯。熊大立刻展開測量、放樣、對齊、固定與防水工程，還精確調整了三毫米的偏差。"
+   }
+  ]
+ },
+ {
+  "clip": "第三章-旁白2",
+  "chapter": "ch3",
+  "cues": [
+   {
+    "scene": 1,
+    "kind": "narration",
+    "index": 0,
+    "part": 1,
+    "parts": 2,
+    "speaker": "narrator",
+    "who": "旁白",
+    "say": "熊大立刻展開測量、放樣、對齊、固定與防水工程，還精確調整了三毫米的偏差。",
+    "text": "兔兔說今天要走一個「低調」行程，接著命令熊大把嵐山竹林鋪滿紅地毯。熊大立刻展開測量、放樣、對齊、固定與防水工程，還精確調整了三毫米的偏差。"
+   }
+  ]
+ },
+ {
+  "clip": "第三章-旁白3",
+  "chapter": "ch3",
+  "cues": [
+   {
+    "scene": 1,
+    "kind": "narration",
+    "index": 1,
+    "part": 0,
+    "parts": 2,
+    "speaker": "narrator",
+    "who": "旁白",
+    "say": "當路人困惑地看著竹林裡的皇家通道，兔兔仍然優雅地走在紅地毯上，認為這就是低調。",
+    "text": "當路人困惑地看著竹林裡的皇家通道，兔兔仍然優雅地走在紅地毯上，認為這就是低調。熊大則在雨中保護整條地毯，並把當日步數記錄為三萬八千步。"
+   }
+  ]
+ },
+ {
+  "clip": "第三章-旁白4",
+  "chapter": "ch3",
+  "cues": [
+   {
+    "scene": 1,
+    "kind": "narration",
+    "index": 1,
+    "part": 1,
+    "parts": 2,
+    "speaker": "narrator",
+    "who": "旁白",
+    "say": "熊大則在雨中保護整條地毯，並把當日步數記錄為三萬八千步。",
+    "text": "當路人困惑地看著竹林裡的皇家通道，兔兔仍然優雅地走在紅地毯上，認為這就是低調。熊大則在雨中保護整條地毯，並把當日步數記錄為三萬八千步。"
+   }
+  ]
+ },
+ {
+  "clip": "第四章-旁白1",
+  "chapter": "ch4",
+  "cues": [
+   {
+    "scene": 1,
+    "kind": "narration",
+    "index": 0,
+    "part": 0,
+    "parts": 2,
+    "speaker": "narrator",
+    "who": "旁白",
+    "say": "兔兔想拍一張最有氣勢的照片，於是命令澀谷十字路口的所有人停下來等她走完。",
+    "text": "兔兔想拍一張最有氣勢的照片，於是命令澀谷十字路口的所有人停下來等她走完。熊大隨即設置交通錐、拿出擴音器，啟動「兔兔專用通行時間」。"
+   }
+  ]
+ },
+ {
+  "clip": "第四章-旁白2",
+  "chapter": "ch4",
+  "cues": [
+   {
+    "scene": 1,
+    "kind": "narration",
+    "index": 0,
+    "part": 1,
+    "parts": 2,
+    "speaker": "narrator",
+    "who": "旁白",
+    "say": "熊大隨即設置交通錐、拿出擴音器，啟動「兔兔專用通行時間」。",
+    "text": "兔兔想拍一張最有氣勢的照片，於是命令澀谷十字路口的所有人停下來等她走完。熊大隨即設置交通錐、拿出擴音器，啟動「兔兔專用通行時間」。"
+   }
+  ]
+ },
+ {
+  "clip": "第四章-旁白3",
+  "chapter": "ch4",
+  "cues": [
+   {
+    "scene": 1,
+    "kind": "narration",
+    "index": 1,
+    "part": 0,
+    "parts": 3,
+    "speaker": "narrator",
+    "who": "旁白",
+    "say": "兔兔走得很慢、很有氣勢，熊大則拿著秒錶計算氣勢達成率。",
+    "text": "兔兔走得很慢、很有氣勢，熊大則拿著秒錶計算氣勢達成率。當兔兔抵達對面，她宣布下一次要走兩趟；熊大立即預約第二回合，並在報告上記下：今日阻塞行人約三千名。"
+   }
+  ]
+ },
+ {
+  "clip": "第四章-旁白4",
+  "chapter": "ch4",
+  "cues": [
+   {
+    "scene": 1,
+    "kind": "narration",
+    "index": 1,
+    "part": 1,
+    "parts": 3,
+    "speaker": "narrator",
+    "who": "旁白",
+    "say": "當兔兔抵達對面，她宣布下一次要走兩趟；熊大立即預約第二回合，並在報告上記下：",
+    "text": "兔兔走得很慢、很有氣勢，熊大則拿著秒錶計算氣勢達成率。當兔兔抵達對面，她宣布下一次要走兩趟；熊大立即預約第二回合，並在報告上記下：今日阻塞行人約三千名。"
+   },
+   {
+    "scene": 1,
+    "kind": "narration",
+    "index": 1,
+    "part": 2,
+    "parts": 3,
+    "speaker": "narrator",
+    "who": "旁白",
+    "say": "今日阻塞行人約三千名。",
+    "text": "兔兔走得很慢、很有氣勢，熊大則拿著秒錶計算氣勢達成率。當兔兔抵達對面，她宣布下一次要走兩趟；熊大立即預約第二回合，並在報告上記下：今日阻塞行人約三千名。"
+   }
+  ]
+ },
+ {
+  "clip": "第五章-旁白1",
+  "chapter": "ch5",
+  "cues": [
+   {
+    "scene": 1,
+    "kind": "narration",
+    "index": 0,
+    "part": 0,
+    "parts": 2,
+    "speaker": "narrator",
+    "who": "旁白",
+    "say": "旅行最後一天，兔兔想把整個月的行程再玩一次。",
+    "text": "旅行最後一天，兔兔想把整個月的行程再玩一次。熊大於是安排東京早餐、京都參拜、奈良鞠躬、大阪章魚燒、神戶牛肉與北海道看雪，全部塞進同一天。"
+   }
+  ]
+ },
+ {
+  "clip": "第五章-旁白2",
+  "chapter": "ch5",
+  "cues": [
+   {
+    "scene": 1,
+    "kind": "narration",
+    "index": 0,
+    "part": 1,
+    "parts": 2,
+    "speaker": "narrator",
+    "who": "旁白",
+    "say": "熊大於是安排東京早餐、京都參拜、奈良鞠躬、大阪章魚燒、神戶牛肉與北海道看雪，全部塞進同一天。",
+    "text": "旅行最後一天，兔兔想把整個月的行程再玩一次。熊大於是安排東京早餐、京都參拜、奈良鞠躬、大阪章魚燒、神戶牛肉與北海道看雪，全部塞進同一天。"
+   }
+  ]
+ },
+ {
+  "clip": "第五章-旁白3",
+  "chapter": "ch5",
+  "cues": [
+   {
+    "scene": 1,
+    "kind": "narration",
+    "index": 1,
+    "part": 0,
+    "parts": 2,
+    "speaker": "narrator",
+    "who": "旁白",
+    "say": "兔兔終於受不了，要求悠閒、浪漫、慢慢逛。",
+    "text": "兔兔終於受不了，要求悠閒、浪漫、慢慢逛。熊大把行程刪到只剩「東京車站發呆一分鐘」，還替飯糰建立品鑑表。"
+   },
+   {
+    "scene": 1,
+    "kind": "narration",
+    "index": 1,
+    "part": 1,
+    "parts": 2,
+    "speaker": "narrator",
+    "who": "旁白",
+    "say": "熊大把行程刪到只剩「東京車站發呆一分鐘」，還替飯糰建立品鑑表。",
+    "text": "兔兔終於受不了，要求悠閒、浪漫、慢慢逛。熊大把行程刪到只剩「東京車站發呆一分鐘」，還替飯糰建立品鑑表。"
+   }
+  ]
+ },
+ {
+  "clip": "第五章-旁白4",
+  "chapter": "ch5",
+  "cues": [
+   {
+    "scene": 1,
+    "kind": "narration",
+    "index": 2,
+    "part": 0,
+    "parts": 1,
+    "speaker": "narrator",
+    "who": "旁白",
+    "say": "兔兔好不容易要求熊大停止分析，熊大卻偷偷建立了下一趟環遊世界資料夾。",
+    "text": "兔兔好不容易要求熊大停止分析，熊大卻偷偷建立了下一趟環遊世界資料夾。"
+   }
+  ]
+ },
+ {
+  "clip": "第六章-旁白1",
+  "chapter": "ch6",
+  "cues": [
+   {
+    "scene": 1,
+    "kind": "narration",
+    "index": 0,
+    "part": 0,
+    "parts": 2,
+    "speaker": "narrator",
+    "who": "旁白",
+    "say": "回國前，兔兔突然想到一個「很棒的主意」：把晴空塔當成自己的個人登機箱。",
+    "text": "回國前，兔兔突然想到一個「很棒的主意」：把晴空塔當成自己的個人登機箱。熊大先量尺寸，再對照航空公司規格，最後得出結論：嚴重超標三千八百倍。"
+   }
+  ]
+ },
+ {
+  "clip": "第六章-旁白2",
+  "chapter": "ch6",
+  "cues": [
+   {
+    "scene": 1,
+    "kind": "narration",
+    "index": 0,
+    "part": 1,
+    "parts": 2,
+    "speaker": "narrator",
+    "who": "旁白",
+    "say": "熊大先量尺寸，再對照航空公司規格，最後得出結論：嚴重超標三千八百倍。",
+    "text": "回國前，兔兔突然想到一個「很棒的主意」：把晴空塔當成自己的個人登機箱。熊大先量尺寸，再對照航空公司規格，最後得出結論：嚴重超標三千八百倍。"
+   }
+  ]
+ },
+ {
+  "clip": "第六章-旁白3",
+  "chapter": "ch6",
+  "cues": [
+   {
+    "scene": 1,
+    "kind": "narration",
+    "index": 1,
+    "part": 0,
+    "parts": 2,
+    "speaker": "narrator",
+    "who": "旁白",
+    "say": "他仍然沒有放棄，而是替晴空塔設計了巨型透明登機箱外殼與兔兔專用行李牌。",
+    "text": "他仍然沒有放棄，而是替晴空塔設計了巨型透明登機箱外殼與兔兔專用行李牌。雖然登機失敗，兔兔卻很滿意，因為她確定自己的登機箱絕對不會被弄丟。"
+   }
+  ]
+ },
+ {
+  "clip": "第六章-旁白4",
+  "chapter": "ch6",
+  "cues": [
+   {
+    "scene": 1,
+    "kind": "narration",
+    "index": 1,
+    "part": 1,
+    "parts": 2,
+    "speaker": "narrator",
+    "who": "旁白",
+    "say": "雖然登機失敗，兔兔卻很滿意，因為她確定自己的登機箱絕對不會被弄丟。",
+    "text": "他仍然沒有放棄，而是替晴空塔設計了巨型透明登機箱外殼與兔兔專用行李牌。雖然登機失敗，兔兔卻很滿意，因為她確定自己的登機箱絕對不會被弄丟。"
+   }
+  ]
+ },
+ {
+  "clip": "番外篇-旁白1",
+  "chapter": "extra",
+  "cues": [
+   {
+    "scene": 1,
+    "kind": "narration",
+    "index": 0,
+    "part": 0,
+    "parts": 3,
+    "speaker": "narrator",
+    "who": "旁白",
+    "say": "旅行結束回到家，兔兔只想把照片、紀念品和回憶帶回來。",
+    "text": "旅行結束回到家，兔兔只想把照片、紀念品和回憶帶回來。熊大卻自主啟動了「將整個日本搬回兔兔家」任務：把富士山、鳥居、晴空塔、奈良鹿、澀谷十字路口與大阪城通通做成迷你模型，分批裝箱運回家。"
+   }
+  ]
+ },
+ {
+  "clip": "番外篇-旁白2",
+  "chapter": "extra",
+  "cues": [
+   {
+    "scene": 1,
+    "kind": "narration",
+    "index": 0,
+    "part": 1,
+    "parts": 3,
+    "speaker": "narrator",
+    "who": "旁白",
+    "say": "熊大卻自主啟動了「將整個日本搬回兔兔家」任務：把富士山、鳥居、晴空塔、奈良鹿、",
+    "text": "旅行結束回到家，兔兔只想把照片、紀念品和回憶帶回來。熊大卻自主啟動了「將整個日本搬回兔兔家」任務：把富士山、鳥居、晴空塔、奈良鹿、澀谷十字路口與大阪城通通做成迷你模型，分批裝箱運回家。"
+   }
+  ]
+ },
+ {
+  "clip": "番外篇-旁白3",
+  "chapter": "extra",
+  "cues": [
+   {
+    "scene": 1,
+    "kind": "narration",
+    "index": 0,
+    "part": 2,
+    "parts": 3,
+    "speaker": "narrator",
+    "who": "旁白",
+    "say": "澀谷十字路口與大阪城通通做成迷你模型，分批裝箱運回家。",
+    "text": "旅行結束回到家，兔兔只想把照片、紀念品和回憶帶回來。熊大卻自主啟動了「將整個日本搬回兔兔家」任務：把富士山、鳥居、晴空塔、奈良鹿、澀谷十字路口與大阪城通通做成迷你模型，分批裝箱運回家。"
+   }
+  ]
+ },
+ {
+  "clip": "番外篇-旁白4",
+  "chapter": "extra",
+  "cues": [
+   {
+    "scene": 1,
+    "kind": "narration",
+    "index": 1,
+    "part": 0,
+    "parts": 2,
+    "speaker": "narrator",
+    "who": "旁白",
+    "say": "不久後，兔兔家變成室內日本主題樂園：客廳有富士山，廚房有拉麵攤，沙發旁有小火車，門口還有鹿。",
+    "text": "不久後，兔兔家變成室內日本主題樂園：客廳有富士山，廚房有拉麵攤，沙發旁有小火車，門口還有鹿。兔兔雖然嫌棄熊大不懂比喻，卻也承認這樣就不用再買機票。"
+   }
+  ]
+ },
+ {
+  "clip": "番外篇-旁白5",
+  "chapter": "extra",
+  "cues": [
+   {
+    "scene": 1,
+    "kind": "narration",
+    "index": 1,
+    "part": 1,
+    "parts": 2,
+    "speaker": "narrator",
+    "who": "旁白",
+    "say": "兔兔雖然嫌棄熊大不懂比喻，卻也承認這樣就不用再買機票。",
+    "text": "不久後，兔兔家變成室內日本主題樂園：客廳有富士山，廚房有拉麵攤，沙發旁有小火車，門口還有鹿。兔兔雖然嫌棄熊大不懂比喻，卻也承認這樣就不用再買機票。"
+   }
+  ]
+ },
+ {
+  "clip": "結語-旁白1",
+  "chapter": "epilogue",
+  "cues": [
+   {
+    "scene": 1,
+    "kind": "narration",
+    "index": 0,
+    "part": 0,
+    "parts": 1,
+    "speaker": "narrator",
+    "who": "旁白",
+    "say": "「這趟旅行最棒的地方，就是我完全不用自己開車、訂票、找路、搬行李，還能每天臨時改行程。」",
+    "text": "「這趟旅行最棒的地方，就是我完全不用自己開車、訂票、找路、搬行李，還能每天臨時改行程。」"
+   }
+  ]
+ },
+ {
+  "clip": "結語-旁白2",
+  "chapter": "epilogue",
+  "cues": [
+   {
+    "scene": 2,
+    "kind": "narration",
+    "index": 0,
+    "part": 0,
+    "parts": 2,
+    "speaker": "narrator",
+    "who": "旁白",
+    "say": "「任務完成：交通 47 次、住宿 8 間、餐廳 63 間、照片 2,846 張、行程重排 119 次、兔兔走失 0 次、",
+    "text": "「任務完成：交通 47 次、住宿 8 間、餐廳 63 間、照片 2,846 張、行程重排 119 次、兔兔走失 0 次、熊大休息 0 次。」"
+   },
+   {
+    "scene": 2,
+    "kind": "narration",
+    "index": 0,
+    "part": 1,
+    "parts": 2,
+    "speaker": "narrator",
+    "who": "旁白",
+    "say": "熊大休息 0 次。」",
+    "text": "「任務完成：交通 47 次、住宿 8 間、餐廳 63 間、照片 2,846 張、行程重排 119 次、兔兔走失 0 次、熊大休息 0 次。」"
+   }
+  ]
+ },
+ {
+  "clip": "reuse",
+  "cues": [
+   {
+    "scene": 7,
+    "kind": "line",
+    "index": 2,
+    "part": 0,
+    "parts": 1,
+    "speaker": "brown",
+    "who": "熊大",
+    "say": "收到，立即執行。",
+    "text": "收到，立即執行。",
+    "chapter": "prologue"
+   },
+   {
+    "scene": 8,
+    "kind": "line",
+    "index": 0,
+    "part": 0,
+    "parts": 1,
+    "speaker": "cony",
+    "who": "兔兔",
+    "say": "熊大！我要去日本玩一個月！",
+    "text": "熊大！我要去日本玩一個月！",
+    "chapter": "prologue"
+   },
+   {
+    "scene": 9,
+    "kind": "line",
+    "index": 0,
+    "part": 0,
+    "parts": 1,
+    "speaker": "cony",
+    "who": "兔兔",
+    "say": "我不會開車！",
+    "text": "我不會開車！",
+    "chapter": "prologue"
+   },
+   {
+    "scene": 10,
+    "kind": "line",
+    "index": 0,
+    "part": 0,
+    "parts": 1,
+    "speaker": "cony",
+    "who": "兔兔",
+    "say": "機票、住宿、行程，全部交給你！",
+    "text": "機票、住宿、行程，全部交給你！",
+    "chapter": "prologue"
+   },
+   {
+    "scene": 11,
+    "kind": "line",
+    "index": 0,
+    "part": 0,
+    "parts": 1,
+    "speaker": "brown",
+    "who": "熊大",
+    "say": "收到指令，立即執行。",
+    "text": "收到指令，立即執行。",
+    "chapter": "prologue"
+   },
+   {
+    "scene": 12,
+    "kind": "line",
+    "index": 0,
+    "part": 0,
+    "parts": 1,
+    "speaker": "cony",
+    "who": "兔兔",
+    "say": "這才叫旅行！",
+    "text": "這才叫旅行！",
+    "chapter": "prologue"
+   },
+   {
+    "scene": 13,
+    "kind": "line",
+    "index": 1,
+    "part": 0,
+    "parts": 1,
+    "speaker": "cony",
+    "who": "兔兔",
+    "say": "下一站：全世界！",
+    "text": "下一站：全世界！",
+    "chapter": "prologue"
+   },
+   {
+    "scene": 3,
+    "kind": "line",
+    "index": 1,
+    "part": 0,
+    "parts": 1,
+    "speaker": "brown",
+    "who": "熊大",
+    "say": "收到，立即執行。",
+    "text": "收到，立即執行。",
+    "chapter": "ch2"
+   },
+   {
+    "scene": 3,
+    "kind": "line",
+    "index": 1,
+    "part": 0,
+    "parts": 1,
+    "speaker": "brown",
+    "who": "熊大",
+    "say": "收到，立即執行。",
+    "text": "收到，立即執行。",
+    "chapter": "ch3"
+   },
+   {
+    "scene": 8,
+    "kind": "line",
+    "index": 0,
+    "part": 0,
+    "parts": 1,
+    "speaker": "cony",
+    "who": "兔兔",
+    "say": "這才叫低調。",
+    "text": "這才叫低調。",
+    "chapter": "ch3"
+   },
+   {
+    "scene": 3,
+    "kind": "line",
+    "index": 1,
+    "part": 0,
+    "parts": 1,
+    "speaker": "brown",
+    "who": "熊大",
+    "say": "收到，立即執行。",
+    "text": "收到，立即執行。",
+    "chapter": "ch4"
+   },
+   {
+    "scene": 2,
+    "kind": "line",
+    "index": 1,
+    "part": 0,
+    "parts": 1,
+    "speaker": "brown",
+    "who": "熊大",
+    "say": "收到，立即執行。",
+    "text": "收到，立即執行。",
+    "chapter": "ch5"
+   },
+   {
+    "scene": 8,
+    "kind": "line",
+    "index": 0,
+    "part": 0,
+    "parts": 1,
+    "speaker": "cony",
+    "who": "兔兔",
+    "say": "不准做表格、不准報時間、不准分析。",
+    "text": "不准做表格、不准報時間、不准分析。",
+    "chapter": "ch5"
+   },
+   {
+    "scene": 3,
+    "kind": "line",
+    "index": 1,
+    "part": 0,
+    "parts": 1,
+    "speaker": "brown",
+    "who": "熊大",
+    "say": "收到，立即執行。",
+    "text": "收到，立即執行。",
+    "chapter": "ch6"
+   },
+   {
+    "scene": 8,
+    "kind": "line",
+    "index": 0,
+    "part": 0,
+    "parts": 1,
+    "speaker": "cony",
+    "who": "兔兔",
+    "say": "我說的是把回憶帶回來，不是把日本搬回來！",
+    "text": "我說的是把回憶帶回來，不是把日本搬回來！",
+    "chapter": "extra"
+   },
+   {
+    "scene": 3,
+    "kind": "line",
+    "index": 1,
+    "part": 0,
+    "parts": 1,
+    "speaker": "brown",
+    "who": "熊大",
+    "say": "收到，立即執行。",
+    "text": "收到，立即執行。",
+    "chapter": "epilogue"
+   }
+  ]
+ }
+]
