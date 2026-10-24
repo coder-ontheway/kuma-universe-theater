@@ -24,6 +24,8 @@ def main():
     ap.add_argument("recording")
     ap.add_argument("--cuts", required=True)
     ap.add_argument("--source", default="使用者提供的錄音")
+    ap.add_argument("--line", type=int, default=0,
+                    help="只換第幾句（1 起算，依 SCRIPT 順序）；這時 --cuts 是這一句在錄音裡的開始,結束秒數")
     args = ap.parse_args()
 
     with tempfile.NamedTemporaryFile(suffix=".wav", delete=False) as tmp:
@@ -33,6 +35,10 @@ def main():
     os.remove(wav)
 
     cues_in_order = [(sc, i, c) for sc in SCRIPT for i, c in enumerate(sc["cues"])]
+    if args.line:
+        # 只換掉一句：其他句子沿用目前 assets/audio 裡的檔案
+        replace_one(audio, cues_in_order, args.line, [float(x) for x in args.cuts.split(",")], args.source)
+        return
     cuts = [float(x) for x in args.cuts.split(",")]
     if len(cuts) != len(cues_in_order) - 1:
         raise SystemExit(f"需要 {len(cues_in_order) - 1} 個切點，收到 {len(cuts)} 個")
@@ -67,6 +73,30 @@ def main():
         f.write("/*\n * 角色配音與旁白的時間表（由 tools/import_voice.py 產生，請勿手動修改）。\n"
                 " * at：這一句從這一幕的第幾秒開始；dur：音檔長度（秒）。text 與原字幕一字不差。\n */\n")
         f.write("window.KUMA_VOICE = " + json.dumps(data, ensure_ascii=False, indent=2) + ";\n")
+
+
+def replace_one(audio, cues_in_order, line, span, source):
+    sc, i, c = cues_in_order[line - 1]
+    path = os.path.join(ROOT, "js", "voice-data.js")
+    text = open(path, encoding="utf-8").read()
+    head, body = text.split("window.KUMA_VOICE = ", 1)
+    data = json.loads(body.rstrip().rstrip(";"))
+    scene = next(s for s in data["scenes"] if s["chapter"] == sc["chapter"] and s["scene"] == sc["scene"])
+    cue = scene["cues"][i]
+    clip = trim(audio[int(span[0] * SR):int(span[1] * SR)].copy(), SR)
+    encode(os.path.join(ROOT, cue["src"]), clip, SR)
+    cue["dur"] = round(len(clip) / SR, 2)
+    cue["source"] = source
+    # 重新排這一幕後面句子的開始時間
+    t = 0.0
+    for k, (cc, sc_cue) in enumerate(zip(scene["cues"], sc["cues"])):
+        t += sc_cue["gap"]
+        cc["at"] = round(t, 2)
+        t += cc["dur"]
+    scene["minDuration"] = round(t + TAIL, 2)
+    with open(path, "w", encoding="utf-8") as f:
+        f.write(head + "window.KUMA_VOICE = " + json.dumps(data, ensure_ascii=False, indent=2) + ";\n")
+    print(f"{cue['src']} | {cue['who']} | {cue['text']} | 錄音 {span[0]:.2f}–{span[1]:.2f}s | 長 {cue['dur']:.2f}s | 網站 {cue['at']:.2f}s 起")
 
 
 if __name__ == "__main__":

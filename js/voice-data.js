@@ -66,7 +66,7 @@ window.KUMA_VOICE = {
       "chapter": "ch1",
       "scene": 4,
       "sceneId": "ep01_ch1_s05",
-      "minDuration": 6.59,
+      "minDuration": 6.1,
       "cues": [
         {
           "id": "ep01_ch1_s05_brown_1",
@@ -86,7 +86,8 @@ window.KUMA_VOICE = {
           "text": "鞠躬 90 度！",
           "src": "assets/audio/narration/ep01_ch1_s05_narrator_2.mp3",
           "at": 3.6,
-          "dur": 1.49
+          "dur": 1.0,
+          "source": "Google Gemini 生成（使用者提供，旁白重錄）"
         }
       ]
     }
