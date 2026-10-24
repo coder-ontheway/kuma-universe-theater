@@ -20,7 +20,7 @@ window.KUMA_VOICE = {
       "chapter": "ch1",
       "scene": 2,
       "sceneId": "ep01_ch1_s03",
-      "minDuration": 4.72,
+      "minDuration": 5.88,
       "cues": [
         {
           "id": "ep01_ch1_s03_cony_1",
@@ -30,7 +30,8 @@ window.KUMA_VOICE = {
           "text": "熊大，我今天有一個很簡單的要求。",
           "src": "assets/audio/voice/ep01_ch1_s03_cony_1.mp3",
           "at": 0.8,
-          "dur": 2.42
+          "dur": 3.58,
+          "source": "Google Gemini 生成（使用者提供，兔兔第一句重錄）"
         }
       ]
     },
