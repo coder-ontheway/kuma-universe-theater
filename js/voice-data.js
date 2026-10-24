@@ -1,21 +1,18 @@
 /*
- * 角色配音與旁白的時間表（由 tools/make_voice.py 產生，請勿手動修改）。
+ * 角色配音與旁白的時間表（由 tools/import_voice.py 產生，請勿手動修改）。
  * at：這一句從這一幕的第幾秒開始；dur：音檔長度（秒）。text 與原字幕一字不差。
  */
 window.KUMA_VOICE = {
-  "model": "Kokoro-82M v1.1-zh（Apache-2.0）",
+  "model": "Google Gemini 生成（使用者提供）",
   "speakers": {
     "brown": {
-      "who": "熊大",
-      "voice": "zm_014"
+      "who": "熊大"
     },
     "cony": {
-      "who": "兔兔",
-      "voice": "zf_073"
+      "who": "兔兔"
     },
     "narrator": {
-      "who": "旁白",
-      "voice": "zm_015"
+      "who": "旁白"
     }
   },
   "scenes": [
@@ -23,7 +20,7 @@ window.KUMA_VOICE = {
       "chapter": "ch1",
       "scene": 2,
       "sceneId": "ep01_ch1_s03",
-      "minDuration": 5.48,
+      "minDuration": 4.72,
       "cues": [
         {
           "id": "ep01_ch1_s03_cony_1",
@@ -33,7 +30,7 @@ window.KUMA_VOICE = {
           "text": "熊大，我今天有一個很簡單的要求。",
           "src": "assets/audio/voice/ep01_ch1_s03_cony_1.mp3",
           "at": 0.8,
-          "dur": 3.18
+          "dur": 2.42
         }
       ]
     },
@@ -41,7 +38,7 @@ window.KUMA_VOICE = {
       "chapter": "ch1",
       "scene": 3,
       "sceneId": "ep01_ch1_s04",
-      "minDuration": 7.99,
+      "minDuration": 6.65,
       "cues": [
         {
           "id": "ep01_ch1_s04_cony_1",
@@ -51,7 +48,7 @@ window.KUMA_VOICE = {
           "text": "我要所有鹿看到我都要鞠躬！",
           "src": "assets/audio/voice/ep01_ch1_s04_cony_1.mp3",
           "at": 0.9,
-          "dur": 2.81
+          "dur": 2.16
         },
         {
           "id": "ep01_ch1_s04_brown_2",
@@ -60,8 +57,8 @@ window.KUMA_VOICE = {
           "line": 1,
           "text": "收到，立即執行。",
           "src": "assets/audio/voice/ep01_ch1_s04_brown_2.mp3",
-          "at": 4.41,
-          "dur": 2.08
+          "at": 3.76,
+          "dur": 1.38
         }
       ]
     },
@@ -69,7 +66,7 @@ window.KUMA_VOICE = {
       "chapter": "ch1",
       "scene": 4,
       "sceneId": "ep01_ch1_s05",
-      "minDuration": 7.7,
+      "minDuration": 6.59,
       "cues": [
         {
           "id": "ep01_ch1_s05_brown_1",
@@ -79,7 +76,7 @@ window.KUMA_VOICE = {
           "text": "鹿一號，請完成九十度鞠躬。",
           "src": "assets/audio/voice/ep01_ch1_s05_brown_1.mp3",
           "at": 0.9,
-          "dur": 3.34
+          "dur": 2.2
         },
         {
           "id": "ep01_ch1_s05_narrator_2",
@@ -88,8 +85,8 @@ window.KUMA_VOICE = {
           "line": 1,
           "text": "鞠躬 90 度！",
           "src": "assets/audio/narration/ep01_ch1_s05_narrator_2.mp3",
-          "at": 4.74,
-          "dur": 1.47
+          "at": 3.6,
+          "dur": 1.49
         }
       ]
     }

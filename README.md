@@ -27,7 +27,8 @@ docs/audio-credits.md      音樂與音效的來源、授權與章節配置表
 docs/voice-script.md       配音試播腳本、聲線與授權
 tools/crop_panels.py       組合圖切割腳本（記錄每張圖的格線座標）
 tools/make_audio.py        合成所有音樂與音效的腳本
-tools/make_voice.py        產生角色配音與旁白的腳本（Kokoro-82M 開源語音模型）
+tools/make_voice.py        配音腳本，並可用 Kokoro-82M 開源語音模型生成
+tools/import_voice.py      把錄好的配音（如 Gemini 影片）切句、對齊並放進網站
 manifest.webmanifest       加入主畫面用設定
 .nojekyll                  讓 GitHub Pages 直接提供所有檔案
 ```

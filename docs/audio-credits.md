@@ -72,7 +72,7 @@
 
 | 檔案 | 內容 | 來源與授權 |
 | --- | --- | --- |
-| `assets/audio/voice/ep01_ch1_s03_cony_1.mp3` | 兔兔「熊大，我今天有一個很簡單的要求。」 | Kokoro-82M（Apache-2.0）本機生成，CC0 |
+| `assets/audio/voice/ep01_ch1_s03_cony_1.mp3` | 兔兔「熊大，我今天有一個很簡單的要求。」 | 使用者以 Google Gemini 生成並提供（依 Gemini 使用條款） |
 | `assets/audio/voice/ep01_ch1_s04_cony_1.mp3` | 兔兔「我要所有鹿看到我都要鞠躬！」 | 同上 |
 | `assets/audio/voice/ep01_ch1_s04_brown_2.mp3` | 熊大「收到，立即執行。」 | 同上 |
 | `assets/audio/voice/ep01_ch1_s05_brown_1.mp3` | 熊大「鹿一號，請完成九十度鞠躬。」 | 同上 |

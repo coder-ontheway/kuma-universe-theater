@@ -8,7 +8,7 @@
 | `voice/` | 兔兔、熊大角色配音（試播 4 個：第一章前三張照片） |
 
 音樂與音效全部由 `tools/make_audio.py` 合成，CC0 授權，來源、授權與每個檔案的用途見 `docs/audio-credits.md`。
-配音與旁白由 `tools/make_voice.py` 以開源語音模型 Kokoro-82M（Apache-2.0）離線生成，腳本與時間表見 `docs/voice-script.md`。
+配音與旁白目前是使用者以 Google Gemini 生成的錄音，由 `tools/import_voice.py` 切句並對齊；`tools/make_voice.py` 可改用開源模型 Kokoro-82M 生成。腳本與時間表見 `docs/voice-script.md`。
 
 配音檔名規則：`ep01_<章節 id>_s<這一章第幾幕，兩位數>_<說話者>_<這一幕第幾句>.mp3`，說話者為 `brown`（熊大）、`cony`（兔兔）、`narrator`（旁白）。
 
